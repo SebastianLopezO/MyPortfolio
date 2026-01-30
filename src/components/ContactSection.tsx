@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,8 +24,8 @@ const ContactSection = () => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     toast({
-      title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      title: t("contact.toast.title"),
+      description: t("contact.toast.description"),
     });
 
     setFormData({ name: "", email: "", message: "" });
@@ -43,8 +45,8 @@ const ContactSection = () => {
     <section id="contact" className="py-20 md:py-32">
       <div className="container px-4">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="section-title">Get In Touch</h2>
-          <p className="section-subtitle">Let's build something amazing together</p>
+          <h2 className="section-title">{t("contact.title")}</h2>
+          <p className="section-subtitle">{t("contact.subtitle")}</p>
         </div>
 
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
@@ -52,11 +54,10 @@ const ContactSection = () => {
           <div className="space-y-8 animate-fade-in-bounce">
             <div>
               <h3 className="text-2xl font-serif font-bold text-foreground mb-4">
-                Let's Connect
+                {t("contact.connect")}
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Whether you have a project in mind, a question about my work, or just want
-                to say hello – I'd love to hear from you.
+                {t("contact.description")}
               </p>
             </div>
 
@@ -66,7 +67,7 @@ const ContactSection = () => {
                   <MapPin className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Location</p>
+                  <p className="font-semibold text-foreground">{t("contact.location")}</p>
                   <p className="text-muted-foreground">Medellín, Colombia</p>
                 </div>
               </div>
@@ -79,7 +80,7 @@ const ContactSection = () => {
                   <Phone className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Phone</p>
+                  <p className="font-semibold text-foreground">{t("contact.phone")}</p>
                   <p className="text-primary hover:underline">+57 321 877 4053</p>
                 </div>
               </a>
@@ -92,7 +93,7 @@ const ContactSection = () => {
                   <Mail className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-semibold text-foreground">Email</p>
+                  <p className="font-semibold text-foreground">{t("contact.email")}</p>
                   <p className="text-primary hover:underline break-all">
                     sebastianlopezosorno2005@gmail.com
                   </p>
@@ -130,7 +131,7 @@ const ContactSection = () => {
           >
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                Full Name
+                {t("contact.form.fullName")}
               </label>
               <Input
                 id="name"
@@ -139,14 +140,14 @@ const ContactSection = () => {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder={t("contact.form.placeholder.name")}
                 className="bg-card border-border focus:border-primary focus:ring-primary"
               />
             </div>
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                Email
+                {t("contact.form.email")}
               </label>
               <Input
                 id="email"
@@ -155,14 +156,14 @@ const ContactSection = () => {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                placeholder="john@example.com"
+                placeholder={t("contact.form.placeholder.email")}
                 className="bg-card border-border focus:border-primary focus:ring-primary"
               />
             </div>
 
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                Message
+                {t("contact.form.message")}
               </label>
               <Textarea
                 id="message"
@@ -171,7 +172,7 @@ const ContactSection = () => {
                 rows={5}
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Tell me about your project..."
+                placeholder={t("contact.form.placeholder.message")}
                 className="bg-card border-border focus:border-primary focus:ring-primary resize-none"
               />
             </div>
@@ -184,12 +185,12 @@ const ContactSection = () => {
               {isSubmitting ? (
                 <>
                   <CheckCircle className="mr-2 h-5 w-5 animate-pulse" />
-                  Sending...
+                  {t("contact.form.sending")}
                 </>
               ) : (
                 <>
                   <Send className="mr-2 h-5 w-5" />
-                  Send Message
+                  {t("contact.form.send")}
                 </>
               )}
             </Button>

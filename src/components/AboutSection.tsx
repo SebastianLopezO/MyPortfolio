@@ -1,51 +1,54 @@
 import { Code2, Database, Cpu, GraduationCap, Calendar } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const asciiArt = `                           \\\\\\\\\\\\\\
-                          \\\\\\\\\\\\\\\\\\\\\\\\
-                        \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    -----------,-|           |C>   // )\\\\\\\\|
-             ,','|          /    || ,'/////|
-  ---------,','  |         (,    ||   /////
-           ||    |          \\\\  ||||//''''|
-           ||    |           |||||||     _|
-           ||    |______      \`\`\`\`\`\\____/ \\
-           ||    |     ,|         _/_____/ \\
-           ||  ,'    ,' |        /          |
-           ||,'    ,'   |       |         \\  |
-  _________|/    ,'     |      /           | |
-  _____________,'      ,',_____|      |    | |
-               |     ,','      |      |    | |
-               |   ,','    ____|_____/    /  |
-               | ,','  __/ |             /   |
-  _____________|','   ///_/-------------/   |
-                |===========,'`;
-
-const education = [
-  {
-    period: "2022–2027",
-    degree: "Bachelor's in Computer Engineering",
-    school: "Politécnico Jaime Isaza Cadavid",
-    status: "In Progress",
-  },
-  {
-    period: "2022–2023",
-    degree: "Software Programming Technician",
-    school: "SENA – IUSH",
-  },
-  {
-    period: "2020–2021",
-    degree: "Assistant Software Development Technician",
-    school: "Institución Educativa Pascual Bravo",
-  },
-];
+                           \\\\\\\\\\\\\\\\\\\\\\\\
+                         \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+     -----------,-|           |C>   // )\\\\\\\\|
+              ,','|          /    || ,'/////|
+   ---------,','  |         (,    ||   /////
+            ||    |          \\\\  ||||//''''|
+            ||    |           |||||||     _|
+            ||    |______      \`\`\`\`\`\\____/ \\
+            ||    |     ,|         _/_____/ \\
+            ||  ,'    ,' |        /          |
+            ||,'    ,'   |       |         \\  |
+   _________|/    ,'     |      /           | |
+   _____________,'      ,',_____|      |    | |
+                |     ,','      |      |    | |
+                |   ,','    ____|_____/    /  |
+                | ,','  __/ |             /   |
+   _____________|','   ///_/-------------/   |
+                 |===========,'`;
 
 const AboutSection = () => {
+  const { t, lang } = useLanguage();
+
+  const education = [
+    {
+      period: "2022–2027",
+      degree: t("about.degrees.bachelor"),
+      school: "Politécnico Jaime Isaza Cadavid",
+      status: t("about.inProgress"),
+    },
+    {
+      period: "2022–2023",
+      degree: t("about.degrees.technician"),
+      school: "SENA – IUSH",
+    },
+    {
+      period: "2020–2021",
+      degree: t("about.degrees.assistant"),
+      school: "Institución Educativa Pascual Bravo",
+    },
+  ];
+
   return (
     <section id="about" className="py-20 md:py-32 bg-card/50">
       <div className="container px-4">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="section-title">The Engineer's Mindset</h2>
-          <p className="section-subtitle">Understanding complexity, delivering simplicity</p>
+          <h2 className="section-title">{t("about.title")}</h2>
+          <p className="section-subtitle">{t("about.subtitle")}</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -57,7 +60,7 @@ const AboutSection = () => {
                 {asciiArt}
               </pre>
               <p className="mt-4 text-center text-muted-foreground font-mono text-sm italic">
-                "Engineering is the art of understanding complex systems"
+                {t("about.quote")}
               </p>
             </div>
           </div>
@@ -65,31 +68,26 @@ const AboutSection = () => {
           {/* Text Content */}
           <div className="space-y-6 animate-fade-in-bounce delay-200">
             <p className="text-lg text-foreground leading-relaxed">
-              I am a passionate and proactive{" "}
-              <span className="text-primary font-semibold">Computer Engineering student</span> from{" "}
-              <span className="text-primary font-semibold">Medellín, Colombia</span>, driven by an 
-              insatiable curiosity and a strong commitment to continuous learning.
+              {t("about.paragraph1")}{" "}
+              <span className="text-primary font-semibold">{t("about.role")}</span> {t("about.from")}{" "}
+              <span className="text-primary font-semibold">{t("hero.location")}</span>
+              {t("about.paragraph1End")}
             </p>
             
             <p className="text-muted-foreground leading-relaxed">
-              My academic and professional experiences have shaped me into a versatile individual 
-              capable of tackling complex challenges through analytical thinking, creativity, and 
-              teamwork. I stand out for my investigative mindset, my ability to learn independently, 
-              and my dedication to improving both individual and collective outcomes.
+              {t("about.paragraph2")}
             </p>
 
             <p className="text-muted-foreground leading-relaxed">
-              I see engineering not just as the mastery of tools, but as the art of understanding 
-              complex systems, asking the right questions, and building thoughtful, sustainable, 
-              and human-centered solutions.
+              {t("about.paragraph3")}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-4 pt-4">
               {[
-                { icon: Code2, label: "Backend Dev", value: "3+ Years" },
-                { icon: Database, label: "Data Analysis", value: "Expert" },
-                { icon: Cpu, label: "IoT Projects", value: "Innovative" },
+                { icon: Code2, label: t("about.stats.backendDev"), value: t("about.stats.years") },
+                { icon: Database, label: t("about.stats.dataAnalysis"), value: t("about.stats.expert") },
+                { icon: Cpu, label: t("about.stats.iotProjects"), value: t("about.stats.innovative") },
               ].map((item, index) => (
                 <div
                   key={item.label}
@@ -109,7 +107,7 @@ const AboutSection = () => {
         <div className="mt-20 animate-slide-up">
           <div className="flex items-center justify-center gap-3 mb-8">
             <GraduationCap className="h-6 w-6 text-primary" />
-            <h3 className="text-2xl font-serif font-bold gradient-text">Education</h3>
+            <h3 className="text-2xl font-serif font-bold gradient-text">{t("about.education")}</h3>
           </div>
 
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">

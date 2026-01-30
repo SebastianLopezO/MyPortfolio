@@ -1,19 +1,22 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLanguage } from "@/hooks/useLanguage";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { t, lang } = useLanguage();
+
+  const navItems = [
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.about"), href: "#about" },
+    { label: t("nav.experience"), href: "#experience" },
+    { label: t("nav.skills"), href: "#skills" },
+    { label: t("nav.projects"), href: "#projects" },
+    { label: t("nav.contact"), href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,17 +57,21 @@ const Navigation = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageSwitcher />
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-foreground"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}

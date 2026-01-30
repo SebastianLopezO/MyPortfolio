@@ -8,6 +8,7 @@ import {
   ExternalLink,
   Phone
 } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/SebastianLopezO", label: "GitHub" },
@@ -29,6 +30,7 @@ const additionalLinks = [
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { t } = useLanguage();
 
   return (
     <footer className="py-12 border-t border-border bg-card/50">
@@ -55,7 +57,7 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground">
               © {currentYear} My Portfolio by{" "}
               <span className="text-primary font-semibold">Sebastián López Osorno</span>.
-              All rights reserved.
+              {" "}{t("footer.rights")}
             </p>
           </div>
 
@@ -82,7 +84,7 @@ const Footer = () => {
         </div>
 
         <p className="mt-4 text-center text-xs text-muted-foreground font-mono">
-          &lt;/built with passion&gt;
+          {t("footer.builtWith")}
         </p>
       </div>
     </footer>

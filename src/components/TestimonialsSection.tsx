@@ -1,6 +1,7 @@
 import { Quote, ChevronLeft, ChevronRight, Briefcase, GraduationCap, Users } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface Testimonial {
   quote: string;
@@ -126,6 +127,7 @@ const getRelationshipIcon = (relationship: string) => {
 
 const TestimonialsSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
+  const { t } = useLanguage();
   const testimonialsPerPage = 3;
   const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
 
@@ -146,9 +148,9 @@ const TestimonialsSection = () => {
     <section id="testimonials" className="py-20 md:py-32 bg-card/50">
       <div className="container px-4">
         <div className="text-center mb-12 animate-slide-up">
-          <h2 className="section-title">What My Colleagues Say</h2>
+          <h2 className="section-title">{t("testimonials.title")}</h2>
           <p className="section-subtitle">
-            {testimonials.length} recommendations from LinkedIn
+            {testimonials.length} {t("testimonials.subtitle")}
           </p>
         </div>
 
@@ -234,19 +236,19 @@ const TestimonialsSection = () => {
         <div className="mt-12 flex flex-wrap justify-center gap-8">
           <div className="text-center">
             <p className="text-3xl font-bold text-primary">{testimonials.length}</p>
-            <p className="text-sm text-muted-foreground">Recommendations</p>
+            <p className="text-sm text-muted-foreground">{t("testimonials.recommendations")}</p>
           </div>
           <div className="text-center">
             <p className="text-3xl font-bold text-primary">
               {testimonials.filter(t => t.relationship.includes("Supervisor")).length}
             </p>
-            <p className="text-sm text-muted-foreground">From Supervisors</p>
+            <p className="text-sm text-muted-foreground">{t("testimonials.fromSupervisors")}</p>
           </div>
           <div className="text-center">
             <p className="text-3xl font-bold text-primary">
               {testimonials.filter(t => t.relationship.includes("equipo")).length}
             </p>
-            <p className="text-sm text-muted-foreground">From Teammates</p>
+            <p className="text-sm text-muted-foreground">{t("testimonials.fromTeammates")}</p>
           </div>
         </div>
       </div>

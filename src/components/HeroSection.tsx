@@ -1,9 +1,12 @@
 import { ArrowDown, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/useLanguage";
 import profileImage from "@/assets/profile.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       id="home"
@@ -41,20 +44,20 @@ const HeroSection = () => {
             </div>
 
             <p className="text-primary font-mono text-sm md:text-base mb-4 tracking-wider">
-              &lt;hello world /&gt;
+              {t("hero.greeting")}
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
-              Hi 👋, I'm{" "}
+              {t("hero.title")}{" "}
               <span className="gradient-text">Sebastián</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-serif text-muted-foreground mb-6">
-              <span className="text-primary">Backend Developer</span> &{" "}
-              <span className="text-secondary">Data Analyst</span>
+              <span className="text-primary">{t("hero.role1")}</span> &{" "}
+              <span className="text-secondary">{t("hero.role2")}</span>
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 mb-8">
-              A passionate developer from{" "}
-              <span className="text-primary font-semibold">Medellín, Colombia</span>,
-              building efficient systems and uncovering insights from complex data.
+              {t("hero.description")}{" "}
+              <span className="text-primary font-semibold">{t("hero.location")}</span>
+              {t("hero.descriptionEnd")}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -63,7 +66,7 @@ const HeroSection = () => {
                   size="lg"
                   className="group bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg glow-hover transition-all duration-300"
                 >
-                  Want to see my CV?
+                  {t("hero.ctaCV")}
                   <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform" />
                 </Button>
               </a>
@@ -74,7 +77,7 @@ const HeroSection = () => {
                   className="group border-primary/50 hover:border-primary hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300"
                 >
                   <Eye className="mr-2 h-5 w-5" />
-                  View Projects
+                  {t("hero.ctaProjects")}
                 </Button>
               </a>
             </div>

@@ -1,54 +1,48 @@
 import { Briefcase } from "lucide-react";
-
-interface Experience {
-  company: string;
-  role: string;
-  period: string;
-  description: string;
-  technologies: string[];
-  current?: boolean;
-}
-
-const experiences: Experience[] = [
-  {
-    company: "TIVENOS",
-    role: "IT Manager & Backend CRM Developer",
-    period: "Jun 2025 - Present",
-    description: "Leading IT infrastructure and developing robust CRM backend solutions with modern frameworks.",
-    technologies: ["FastAPI", "REST APIs", "Zoho Ecosystem", "Docker", "Nginx"],
-    current: true,
-  },
-  {
-    company: "ADCOM GROUP",
-    role: "CRM & MarTech Developer",
-    period: "Feb 2025 - Present",
-    description: "Building marketing technology solutions and CRM automation with AI integration.",
-    technologies: ["Deluge", "Zoho Creator", "AI Automation (Dapta)", "VPS Management"],
-    current: true,
-  },
-  {
-    company: "MUV-U S.A.S",
-    role: "Backend Developer & Data Analyst",
-    period: "Jul 2023 - Jan 2025",
-    description: "Developed data architectures and automated CRM processes with advanced analytics.",
-    technologies: ["Power BI", "Data Architecture", "CRM Automation", "Python"],
-  },
-  {
-    company: "Quipux S.A.S",
-    role: "Data Analyst",
-    period: "Aug 2022 - May 2023",
-    description: "Created automated reporting systems and data pipelines for business intelligence.",
-    technologies: ["Python", "SQL", "Automated Reporting", "Data Analysis"],
-  },
-];
+import { useLanguage } from "@/hooks/useLanguage";
 
 const ExperienceSection = () => {
+  const { t } = useLanguage();
+
+  const experiences = [
+    {
+      company: "TIVENOS",
+      role: t("experience.jobs.tivenos.role"),
+      period: "Jun 2025 - Present",
+      description: t("experience.jobs.tivenos.description"),
+      technologies: ["FastAPI", "REST APIs", "Zoho Ecosystem", "Docker", "Nginx"],
+      current: true,
+    },
+    {
+      company: "ADCOM GROUP",
+      role: t("experience.jobs.adcom.role"),
+      period: "Feb 2025 - Present",
+      description: t("experience.jobs.adcom.description"),
+      technologies: ["Deluge", "Zoho Creator", "AI Automation (Dapta)", "VPS Management"],
+      current: true,
+    },
+    {
+      company: "MUV-U S.A.S",
+      role: t("experience.jobs.muvu.role"),
+      period: "Jul 2023 - Jan 2025",
+      description: t("experience.jobs.muvu.description"),
+      technologies: ["Power BI", "Data Architecture", "CRM Automation", "Python"],
+    },
+    {
+      company: "Quipux S.A.S",
+      role: t("experience.jobs.quipux.role"),
+      period: "Aug 2022 - May 2023",
+      description: t("experience.jobs.quipux.description"),
+      technologies: ["Python", "SQL", "Automated Reporting", "Data Analysis"],
+    },
+  ];
+
   return (
     <section id="experience" className="py-20 md:py-32">
       <div className="container px-4">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="section-title">Professional Experience</h2>
-          <p className="section-subtitle">Building the future, one system at a time</p>
+          <h2 className="section-title">{t("experience.title")}</h2>
+          <p className="section-subtitle">{t("experience.subtitle")}</p>
         </div>
 
         <div className="relative max-w-4xl mx-auto">
@@ -80,7 +74,7 @@ const ExperienceSection = () => {
                     <span className="text-primary font-mono text-sm">{exp.period}</span>
                     {exp.current && (
                       <span className="px-2 py-0.5 text-xs font-semibold bg-primary/20 text-primary rounded-full">
-                        Current
+                        {t("experience.current")}
                       </span>
                     )}
                   </div>

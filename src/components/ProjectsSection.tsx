@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ExternalLink, Github, Award, FolderGit2, FileCode, Sparkles, Calendar, Building2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/hooks/useLanguage";
 
 type FilterType = "all" | "repositories" | "projects" | "certificates";
 
@@ -49,7 +50,7 @@ const projects: Project[] = [
     type: "repositories",
     github: "https://github.com/VocationalSebastian-s",
   },
-  // Certificates - Platzi (2024)
+  // Certificates
   {
     title: "Curso de DAX para Power BI",
     description: "Advanced DAX formulas and expressions for Power BI data modeling and analytics.",
@@ -89,7 +90,6 @@ const projects: Project[] = [
     date: "Jun 2024",
     link: "https://platzi.com/p/SebastianLopezO/",
   },
-  // Certificates - INCO Academy
   {
     title: "Green Digital Skills Certificate",
     description: "Digital skills for sustainable and green technology practices.",
@@ -99,7 +99,6 @@ const projects: Project[] = [
     date: "Mar 2024",
     credentialId: "4365637690SL",
   },
-  // Certificates - Universidad de Antioquia (Engancha TIC 2.0)
   {
     title: "Data Science & AI - Engancha TIC 2.0",
     description: "Data Science and Artificial Intelligence fundamentals with Python.",
@@ -135,7 +134,6 @@ const projects: Project[] = [
     issuer: "Universidad de Antioquia",
     date: "Dec 2023",
   },
-  // Certificates - Platzi (2023)
   {
     title: "Curso de IoT: Protocolos de Comunicación",
     description: "IoT communication protocols and embedded systems.",
@@ -163,7 +161,6 @@ const projects: Project[] = [
     date: "Nov 2023",
     link: "https://platzi.com/p/SebastianLopezO/",
   },
-  // Certiport
   {
     title: "IT Specialist - Python",
     description: "Official Python certification covering data types, control flow, I/O operations, and error handling.",
@@ -173,7 +170,6 @@ const projects: Project[] = [
     date: "Nov 2023",
     credentialId: "9GmW-s4Nk",
   },
-  // Comfenalco
   {
     title: "Python Django 2",
     description: "Advanced Django web framework development.",
@@ -182,7 +178,6 @@ const projects: Project[] = [
     issuer: "Comfenalco Antioquia",
     date: "Nov 2023",
   },
-  // HackerMentor
   {
     title: "Hacking Ético Gamificado HACKLAB",
     description: "Ethical hacking and cybersecurity through gamified learning.",
@@ -192,7 +187,6 @@ const projects: Project[] = [
     date: "Aug 2023",
     credentialId: "d61a7018-0d32-4ee4-8b88-13dc95f6002d",
   },
-  // HackerRank Certificates
   {
     title: "Problem Solving (Basic)",
     description: "Algorithmic problem solving and computational thinking.",
@@ -257,7 +251,6 @@ const projects: Project[] = [
     issuer: "Cámara de Comercio",
     date: "Jun 2022",
   },
-  // UTP
   {
     title: "Fundamentos de Programación 1 & 2",
     description: "Programming fundamentals with functional programming concepts.",
@@ -266,7 +259,6 @@ const projects: Project[] = [
     issuer: "Universidad Tecnológica de Pereira",
     date: "Dec 2021",
   },
-  // EIA
   {
     title: "Introducción a la Programación Python",
     description: "Python programming introduction.",
@@ -275,7 +267,6 @@ const projects: Project[] = [
     issuer: "Universidad EIA",
     date: "May 2021",
   },
-  // Coursera
   {
     title: "Introduction to HTML",
     description: "HTML fundamentals for web development.",
@@ -286,15 +277,16 @@ const projects: Project[] = [
   },
 ];
 
-const filterButtons: { label: string; value: FilterType; icon: React.ElementType }[] = [
-  { label: "All", value: "all", icon: FileCode },
-  { label: "Repositories", value: "repositories", icon: FolderGit2 },
-  { label: "Projects", value: "projects", icon: Github },
-  { label: "Certificates", value: "certificates", icon: Award },
-];
-
 const ProjectsSection = () => {
   const [filter, setFilter] = useState<FilterType>("all");
+  const { t } = useLanguage();
+
+  const filterButtons: { label: string; value: FilterType; icon: React.ElementType }[] = [
+    { label: t("projects.filters.all"), value: "all", icon: FileCode },
+    { label: t("projects.filters.repositories"), value: "repositories", icon: FolderGit2 },
+    { label: t("projects.filters.projects"), value: "projects", icon: Github },
+    { label: t("projects.filters.certificates"), value: "certificates", icon: Award },
+  ];
 
   const filteredProjects = projects.filter(
     (project) => filter === "all" || project.type === filter
@@ -306,8 +298,8 @@ const ProjectsSection = () => {
     <section id="projects" className="py-20 md:py-32">
       <div className="container px-4">
         <div className="text-center mb-16 animate-slide-up">
-          <h2 className="section-title">Portfolio & Projects</h2>
-          <p className="section-subtitle">Showcasing innovation through code</p>
+          <h2 className="section-title">{t("projects.title")}</h2>
+          <p className="section-subtitle">{t("projects.subtitle")}</p>
         </div>
 
         {/* Filter Buttons */}
@@ -351,7 +343,7 @@ const ProjectsSection = () => {
               {project.featured && (
                 <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full mb-3">
                   <Sparkles className="h-3 w-3" />
-                  Featured Project
+                  {t("projects.featured")}
                 </span>
               )}
 
@@ -401,7 +393,7 @@ const ProjectsSection = () => {
                     className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Github className="h-4 w-4" />
-                    View Code
+                    {t("projects.viewCode")}
                   </a>
                 )}
                 {project.link && (
@@ -412,13 +404,13 @@ const ProjectsSection = () => {
                     className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     <ExternalLink className="h-4 w-4" />
-                    {project.type === "certificates" ? "View Credential" : "View"}
+                    {project.type === "certificates" ? t("projects.viewCredential") : t("projects.view")}
                   </a>
                 )}
                 {project.type === "certificates" && !project.link && (
                   <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                     <Award className="h-3 w-3 text-primary" />
-                    Verified Certificate
+                    {t("projects.verifiedCertificate")}
                   </span>
                 )}
               </div>
@@ -429,7 +421,7 @@ const ProjectsSection = () => {
         {/* GitHub Stats Section */}
         <div className="mt-20 animate-slide-up">
           <h3 className="text-2xl font-serif font-bold mb-8 text-center gradient-text">
-            GitHub Statistics
+            {t("projects.githubStats")}
           </h3>
           
           {/* Stats Row 1 - Main Stats */}
@@ -461,7 +453,7 @@ const ProjectsSection = () => {
           {/* Trophies */}
           <div className="flex justify-center mb-6 overflow-x-auto">
             <img
-              src="https://github-profile-trophy.vercel.app/?username=SebastianLopezO&theme=darkhub&no-frame=true&no-bg=true&margin-w=4&column=7"
+              src="https://github-profile-trophy.vercel.app/?username=SebastianLopezO&theme=darkhub&no-frame=true&column=7&margin-w=15&margin-h=15"
               alt="GitHub Trophies"
               className="max-w-full h-auto"
               loading="lazy"
@@ -469,39 +461,11 @@ const ProjectsSection = () => {
           </div>
 
           {/* Activity Graph */}
-          <div className="flex justify-center mb-6 overflow-x-auto">
+          <div className="flex justify-center">
             <img
-              src="https://github-readme-activity-graph.vercel.app/graph?username=SebastianLopezO&theme=react-dark&bg_color=0D0D0D&color=36BFB1&line=038C73&point=36BFB1&area_color=02735E&area=true&hide_border=false"
-              alt="GitHub Activity Graph"
+              src="https://github-readme-activity-graph.vercel.app/graph?username=SebastianLopezO&theme=react-dark&bg_color=0D0D0D&color=36BFB1&line=36BFB1&point=F8FDFF&area=true&hide_border=false"
+              alt={t("projects.activity")}
               className="rounded-lg border border-border max-w-full h-auto"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Additional Stats Cards */}
-          <div className="flex flex-wrap justify-center gap-4">
-            <img
-              src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=SebastianLopezO&theme=github_dark"
-              alt="Repos per Language"
-              className="rounded-lg border border-border"
-              loading="lazy"
-            />
-            <img
-              src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=SebastianLopezO&theme=github_dark"
-              alt="Most Commit Language"
-              className="rounded-lg border border-border"
-              loading="lazy"
-            />
-            <img
-              src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=SebastianLopezO&theme=github_dark"
-              alt="Stats"
-              className="rounded-lg border border-border"
-              loading="lazy"
-            />
-            <img
-              src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=SebastianLopezO&theme=github_dark&utcOffset=-5"
-              alt="Productive Time"
-              className="rounded-lg border border-border"
               loading="lazy"
             />
           </div>
