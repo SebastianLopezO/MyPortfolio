@@ -1,60 +1,43 @@
 # ===============================
-# Stage 1: Build de la app
+# Stage 1: Build
 # ===============================
 FROM node:20-alpine AS build
 
-# Directorio de trabajo
 WORKDIR /app
 
-# Habilitar pnpm
+# Activar pnpm
 RUN corepack enable && corepack prepare pnpm@10.12.4 --activate
-ENV PNPM_HOME="/root/.local/share/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
 
-# Copiar dependencias
+# Copiar dependencias primero (mejor cache)
 COPY package.json pnpm-lock.yaml ./
 
-# Instalar dependencias
 RUN pnpm install --frozen-lockfile
 
-# Copiar el resto del código
+# Copiar resto del proyecto
 COPY . .
 
-# Compilar el proyecto
+# Build Vite
 RUN pnpm run build
 
 
 # ===============================
-# Stage 2: Imagen final (serve)
+# Stage 2: Producción (serve)
 # ===============================
 FROM node:20-alpine
 
 WORKDIR /app
 
-# Definir entorno para PNPM global
-ENV PNPM_HOME="/root/.local/share/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-
-# Instalar corepack y pnpm
+# Activar pnpm
 RUN corepack enable && corepack prepare pnpm@10.12.4 --activate
 
-# Crear el directorio global si no existe (previene error)
-RUN mkdir -p $PNPM_HOME && chmod -R 777 $PNPM_HOME
-
-# Instalar `serve` globalmente
+# Instalar servidor liviano
 RUN pnpm add -g serve
 
-# Copiar los archivos compilados desde el build stage
+# Copiar build compilado
 COPY --from=build /app/dist ./dist
 
-# Copiar el entrypoint
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Exponer el puerto
+# Exponer puerto Vite/Serve
 EXPOSE 5173
 
-# Usar el entrypoint
-ENTRYPOINT ["/entrypoint.sh"]
-
+# Ejecutar servidor
 CMD ["serve", "-s", "dist", "-l", "5173"]
