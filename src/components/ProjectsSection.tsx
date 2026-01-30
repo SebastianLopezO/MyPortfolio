@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { ExternalLink, Github, Award, FolderGit2, FileCode, Sparkles, Calendar, Building2, Users } from "lucide-react";
+import { ExternalLink, Github, Award, FolderGit2, FileCode, Sparkles, Calendar, Building2, Users, GraduationCap, Wrench, Leaf, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
-import OrganizationsSection from "./OrganizationsSection";
 
 type FilterType = "all" | "organizations" | "repositories" | "projects" | "certificates";
 
 interface Project {
   title: string;
-  description: string;
+  descriptionEs: string;
+  descriptionEn: string;
+  fullDescriptionEs?: string;
+  fullDescriptionEn?: string;
   technologies: string[];
   type: "repositories" | "projects" | "certificates";
   link?: string;
@@ -16,45 +18,147 @@ interface Project {
   featured?: boolean;
   issuer?: string;
   date?: string;
+  dateEnd?: string;
+  association?: string;
   credentialId?: string;
+  collaborators?: number;
 }
 
+interface Organization {
+  name: string;
+  icon: "graduation" | "wrench" | "leaf" | "users";
+  descriptionEs: string;
+  descriptionEn: string;
+  github: string;
+  metricsUrl: string;
+  technologies: string[];
+  repositories: Repository[];
+}
+
+interface Repository {
+  name: string;
+  owner: string;
+}
+
+const organizations: Organization[] = [
+  {
+    name: "EngineeringSebastian-s",
+    icon: "graduation",
+    descriptionEs: "Proyectos de Ingeniería Informática en el Politécnico Jaime Isaza Cadavid, abarcando programación, bases de datos, sistemas operativos, IA y redes.",
+    descriptionEn: "Computer Engineering projects at Politécnico Jaime Isaza Cadavid, covering programming, databases, operating systems, AI, and networks.",
+    github: "https://github.com/EngineeringSebastian-s",
+    metricsUrl: "https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/orgs/metrics.engineeringsebastians.svg",
+    technologies: ["Java", "Python", "MongoDB", "Docker", "C++"],
+    repositories: [
+      { name: "DB2", owner: "EngineeringSebastian-s" },
+      { name: "SistemasOperativos", owner: "EngineeringSebastian-s" },
+      { name: "ARQH", owner: "EngineeringSebastian-s" },
+      { name: "TLP2", owner: "EngineeringSebastian-s" },
+      { name: "TLP1", owner: "EngineeringSebastian-s" },
+      { name: "Grafos", owner: "EngineeringSebastian-s" },
+      { name: "Arboles", owner: "EngineeringSebastian-s" },
+      { name: "Polinomios", owner: "EngineeringSebastian-s" },
+      { name: "MatricesDispersas", owner: "EngineeringSebastian-s" },
+      { name: "SemioticaInformatica", owner: "EngineeringSebastian-s" },
+      { name: "AP4", owner: "EngineeringSebastian-s" },
+      { name: "SistemaDeNotas", owner: "EngineeringSebastian-s" },
+      { name: "AP3", owner: "EngineeringSebastian-s" },
+      { name: "AP2", owner: "EngineeringSebastian-s" },
+      { name: "AP1", owner: "EngineeringSebastian-s" },
+      { name: "CarSpace", owner: "EngineeringSebastian-s" },
+    ],
+  },
+  {
+    name: "TechnicalSebastians",
+    icon: "wrench",
+    descriptionEs: "Proyectos del Técnico en Programación de Software en IUSH, incluyendo aplicaciones web y herramientas de sistema con C#, PHP, JavaScript y MySQL.",
+    descriptionEn: "Software Programming Technique projects from IUSH, including web applications and system tools with C#, PHP, JavaScript, and MySQL.",
+    github: "https://github.com/TechnicalSebastians",
+    metricsUrl: "https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/orgs/metrics.technicalsebastians.svg",
+    technologies: ["C#", "PHP", "JavaScript", "MySQL", "Apache", "Docker"],
+    repositories: [
+      { name: "VideoToAscii", owner: "TechnicalSebastians" },
+      { name: "SitePersist", owner: "TechnicalSebastians" },
+      { name: "CalculadoraNasa", owner: "TechnicalSebastians" },
+      { name: "AdminSitePersist", owner: "TechnicalSebastians" },
+    ],
+  },
+  {
+    name: "VocationalSebastian-s",
+    icon: "graduation",
+    descriptionEs: "Proyectos del Bachillerato Técnico en Programación de Software en Pascual Bravo con INEM, usando HTML, PHP, Visual Basic .NET, Java y Python.",
+    descriptionEn: "Technical High School projects from Pascual Bravo with INEM, using HTML, PHP, Visual Basic .NET, Java, and Python.",
+    github: "https://github.com/VocationalSebastian-s",
+    metricsUrl: "https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/orgs/metrics.vocationalsebastians.svg",
+    technologies: ["HTML", "PHP", "VB.NET", "Java", "Python"],
+    repositories: [
+      { name: "TheCompanyDream", owner: "VocationalSebastian-s" },
+      { name: "InstintoAcuatico", owner: "VocationalSebastian-s" },
+      { name: "BitMapConvertColor", owner: "VocationalSebastian-s" },
+      { name: "BingoExcel", owner: "VocationalSebastian-s" },
+      { name: "CalculadoraJava", owner: "VocationalSebastian-s" },
+      { name: "PositionHorse", owner: "VocationalSebastian-s" },
+      { name: "GuiaPython", owner: "VocationalSebastian-s" },
+      { name: "DimensionCube", owner: "VocationalSebastian-s" },
+    ],
+  },
+  {
+    name: "SmartPotTech",
+    icon: "leaf",
+    descriptionEs: "Proyecto personal IoT para automatizar jardines hidropónicos con ESP32, Spring Boot, React y MongoDB. Desarrollado en cursos de Arquitectura de Hardware, Diseño de Software y Taller de Lenguajes.",
+    descriptionEn: "Personal IoT project to automate hydroponic gardens with ESP32, Spring Boot, React, and MongoDB. Developed across Hardware Architecture, Software Design, and Programming Languages courses.",
+    github: "https://github.com/SmartPotTech",
+    metricsUrl: "https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/orgs/metrics.smartpottech.svg",
+    technologies: ["React", "Spring Boot", "MongoDB", "ESP32", "Redis", "Node.js"],
+    repositories: [
+      { name: "SmartPot-API", owner: "SmartPotTech" },
+      { name: ".github", owner: "SmartPotTech" },
+      { name: "SmartPot-Web", owner: "SmartPotTech" },
+      { name: "SmartPot-DB", owner: "SmartPotTech" },
+      { name: "SmartPot-IoT", owner: "SmartPotTech" },
+      { name: "SmartPot-Middleware", owner: "SmartPotTech" },
+      { name: "SmartPot-DataAnalytics", owner: "SmartPotTech" },
+      { name: "SmartPot-DataGenerator", owner: "SmartPotTech" },
+      { name: "SmartPot-Mail", owner: "SmartPotTech" },
+      { name: "SmartPot-Cache", owner: "SmartPotTech" },
+    ],
+  },
+];
+
 const projects: Project[] = [
-  // Featured Project
+  // Featured Project - SmartPot
   {
     title: "SmartPot",
-    description: "IoT-integrated hydroponic management system with real-time monitoring, automated nutrient control, and Wokwi simulation for testing. Developed across Hardware Architecture, Software Design, and Programming Languages Workshop courses.",
-    technologies: ["React", "Vite", "Spring Boot", "MongoDB", "Redis", "ESP32", "Node.js"],
+    descriptionEs: "Sistema IoT diseñado para transformar la gestión de jardines hidropónicos mediante la integración de tecnologías modernas, combinando software y hardware para una solución eficiente, escalable y fácil de manejar.",
+    descriptionEn: "IoT system designed to transform hydroponic garden management through modern technology integration, combining software and hardware for an efficient, scalable, and easy-to-manage solution.",
+    fullDescriptionEs: `SmartPot es un sistema diseñado para transformar la gestión de jardines hidropónicos mediante la integración de tecnologías modernas. Este proyecto combina software y hardware para ofrecer una solución eficiente, escalable y fácil de manejar, centrada en la automatización y el monitoreo remoto.
+
+🌐 Portal Web: Desarrollado con Vite, React, TypeScript, Tailwind CSS y Plotly, proporcionando una experiencia intuitiva y herramientas avanzadas para la visualización de datos en tiempo real.
+
+⚙️ Backend: Construido con Spring Boot en Java 17, gestionando una API robusta con Redis como caché y MongoDB como base de datos. Incluye seguridad avanzada con Spring Security + JWT, documentación con Swagger, servicios de correo, manejo multi-hilos y arquitectura de alto rendimiento.
+
+🔌 IoT: Simulación en Wokwi con MicroPython para control de sensores y actuadores. Comunicación en tiempo real mediante uRequests para envío y recepción de datos con capacidad de respuesta instantánea.`,
+    fullDescriptionEn: `SmartPot is a system designed to transform hydroponic garden management through modern technology integration. This project combines software and hardware to offer an efficient, scalable, and easy-to-manage solution, focused on automation and remote monitoring.
+
+🌐 Web Portal: Developed with Vite, React, TypeScript, Tailwind CSS, and Plotly, providing an intuitive experience and advanced tools for real-time data visualization.
+
+⚙️ Backend: Built with Spring Boot on Java 17, managing a robust API with Redis as cache and MongoDB as database. Includes advanced security with Spring Security + JWT, Swagger documentation, email services, multi-thread handling, and high-performance architecture.
+
+🔌 IoT: Wokwi simulation with MicroPython for sensor and actuator control. Real-time communication via uRequests for instant data sending and receiving with immediate response capability.`,
+    technologies: ["React", "Vite", "TypeScript", "Tailwind CSS", "Plotly", "Spring Boot", "Java 17", "MongoDB", "Redis", "Spring Security", "JWT", "Swagger", "MicroPython", "ESP32", "Wokwi", "Node.js", "Docker", "REST API"],
     type: "projects",
     github: "https://github.com/SmartPotTech",
     featured: true,
-  },
-  // Repositories
-  {
-    title: "Computer Engineering Projects",
-    description: "Collection of academic projects from Politécnico Jaime Isaza Cadavid covering AI, databases, operating systems, and networks.",
-    technologies: ["Java", "Python", "MongoDB", "Docker", "AI"],
-    type: "repositories",
-    github: "https://github.com/EngSebastianLopez",
-  },
-  {
-    title: "TechnicalSebastians",
-    description: "Software Programming Technique projects from IUSH including web applications and system tools.",
-    technologies: ["C#", "PHP", "JavaScript", "MySQL", "Apache"],
-    type: "repositories",
-    github: "https://github.com/TechnicalSebastians",
-  },
-  {
-    title: "VocationalSebastian-s",
-    description: "Technical High School projects in collaboration with INEM featuring various programming exercises.",
-    technologies: ["HTML", "PHP", "Visual Basic .NET", "Java", "Python"],
-    type: "repositories",
-    github: "https://github.com/VocationalSebastian-s",
+    date: "Mar 2024",
+    dateEnd: "Actualidad",
+    association: "Politécnico Colombiano 'Jaime Isaza Cadavid'",
+    collaborators: 3,
   },
   // Certificates
   {
     title: "Curso de DAX para Power BI",
-    description: "Advanced DAX formulas and expressions for Power BI data modeling and analytics.",
+    descriptionEs: "Fórmulas y expresiones DAX avanzadas para modelado y análisis de datos en Power BI.",
+    descriptionEn: "Advanced DAX formulas and expressions for Power BI data modeling and analytics.",
     technologies: ["Power BI", "DAX", "Data Analytics"],
     type: "certificates",
     issuer: "Platzi",
@@ -64,7 +168,8 @@ const projects: Project[] = [
   },
   {
     title: "Curso de Análisis de Datos con Power BI",
-    description: "Data analysis techniques and visualization using Microsoft Power BI.",
+    descriptionEs: "Técnicas de análisis de datos y visualización usando Microsoft Power BI.",
+    descriptionEn: "Data analysis techniques and visualization using Microsoft Power BI.",
     technologies: ["Power BI", "Data Analysis", "Visualization"],
     type: "certificates",
     issuer: "Platzi",
@@ -74,7 +179,8 @@ const projects: Project[] = [
   },
   {
     title: "Domina Excel",
-    description: "Complete Excel mastery including VBA, pivot tables, dashboards, and advanced formulas like VLOOKUP/HLOOKUP.",
+    descriptionEs: "Dominio completo de Excel incluyendo VBA, tablas dinámicas, dashboards y fórmulas avanzadas.",
+    descriptionEn: "Complete Excel mastery including VBA, pivot tables, dashboards, and advanced formulas.",
     technologies: ["Excel", "VBA", "Dashboards", "Pivot Tables"],
     type: "certificates",
     issuer: "Platzi",
@@ -84,7 +190,8 @@ const projects: Project[] = [
   },
   {
     title: "Google Search Console para SEO",
-    description: "SEO fundamentals and Google Search Console optimization techniques.",
+    descriptionEs: "Fundamentos de SEO y técnicas de optimización con Google Search Console.",
+    descriptionEn: "SEO fundamentals and Google Search Console optimization techniques.",
     technologies: ["SEO", "Google Search Console", "Web Analytics"],
     type: "certificates",
     issuer: "Platzi",
@@ -93,7 +200,8 @@ const projects: Project[] = [
   },
   {
     title: "Green Digital Skills Certificate",
-    description: "Digital skills for sustainable and green technology practices.",
+    descriptionEs: "Habilidades digitales para prácticas tecnológicas sostenibles y verdes.",
+    descriptionEn: "Digital skills for sustainable and green technology practices.",
     technologies: ["Green Tech", "Sustainability", "Digital Skills"],
     type: "certificates",
     issuer: "INCO Academy",
@@ -102,7 +210,8 @@ const projects: Project[] = [
   },
   {
     title: "Data Science & AI - Engancha TIC 2.0",
-    description: "Data Science and Artificial Intelligence fundamentals with Python.",
+    descriptionEs: "Fundamentos de Ciencia de Datos e Inteligencia Artificial con Python.",
+    descriptionEn: "Data Science and Artificial Intelligence fundamentals with Python.",
     technologies: ["Python", "Data Science", "AI", "Databases"],
     type: "certificates",
     issuer: "Universidad de Antioquia",
@@ -111,7 +220,8 @@ const projects: Project[] = [
   },
   {
     title: "Ciberseguridad - Engancha TIC 2.0",
-    description: "Cybersecurity fundamentals and systems engineering security practices.",
+    descriptionEs: "Fundamentos de ciberseguridad y prácticas de seguridad en ingeniería de sistemas.",
+    descriptionEn: "Cybersecurity fundamentals and systems engineering security practices.",
     technologies: ["Cybersecurity", "Systems Engineering"],
     type: "certificates",
     issuer: "Universidad de Antioquia",
@@ -120,7 +230,8 @@ const projects: Project[] = [
   },
   {
     title: "Programación Web - Engancha TIC 2.0",
-    description: "Web development with JavaScript, Java, and responsive design.",
+    descriptionEs: "Desarrollo web con JavaScript, Java y diseño responsive.",
+    descriptionEn: "Web development with JavaScript, Java, and responsive design.",
     technologies: ["JavaScript", "Java", "Responsive Design", "Web Dev"],
     type: "certificates",
     issuer: "Universidad de Antioquia",
@@ -129,7 +240,8 @@ const projects: Project[] = [
   },
   {
     title: "Visualización de Datos - Engancha TIC 2.0",
-    description: "Data visualization and analytics techniques.",
+    descriptionEs: "Técnicas de visualización de datos y analítica.",
+    descriptionEn: "Data visualization and analytics techniques.",
     technologies: ["Data Visualization", "Analytics"],
     type: "certificates",
     issuer: "Universidad de Antioquia",
@@ -137,7 +249,8 @@ const projects: Project[] = [
   },
   {
     title: "Curso de IoT: Protocolos de Comunicación",
-    description: "IoT communication protocols and embedded systems.",
+    descriptionEs: "Protocolos de comunicación IoT y sistemas embebidos.",
+    descriptionEn: "IoT communication protocols and embedded systems.",
     technologies: ["IoT", "Protocols", "Embedded Systems"],
     type: "certificates",
     issuer: "Platzi",
@@ -146,7 +259,8 @@ const projects: Project[] = [
   },
   {
     title: "Curso Profesional de Git y GitHub",
-    description: "Professional version control with Git and GitHub workflows.",
+    descriptionEs: "Control de versiones profesional con Git y flujos de trabajo en GitHub.",
+    descriptionEn: "Professional version control with Git and GitHub workflows.",
     technologies: ["Git", "GitHub", "Version Control"],
     type: "certificates",
     issuer: "Platzi",
@@ -155,7 +269,8 @@ const projects: Project[] = [
   },
   {
     title: "Fundamentos de Ingeniería de Software",
-    description: "Software engineering principles and methodologies.",
+    descriptionEs: "Principios y metodologías de ingeniería de software.",
+    descriptionEn: "Software engineering principles and methodologies.",
     technologies: ["Software Engineering", "SDLC"],
     type: "certificates",
     issuer: "Platzi",
@@ -164,7 +279,8 @@ const projects: Project[] = [
   },
   {
     title: "IT Specialist - Python",
-    description: "Official Python certification covering data types, control flow, I/O operations, and error handling.",
+    descriptionEs: "Certificación oficial de Python cubriendo tipos de datos, flujo de control, operaciones I/O y manejo de errores.",
+    descriptionEn: "Official Python certification covering data types, control flow, I/O operations, and error handling.",
     technologies: ["Python", "Programming"],
     type: "certificates",
     issuer: "Certiport - Pearson VUE",
@@ -173,7 +289,8 @@ const projects: Project[] = [
   },
   {
     title: "Python Django 2",
-    description: "Advanced Django web framework development.",
+    descriptionEs: "Desarrollo avanzado con el framework web Django.",
+    descriptionEn: "Advanced Django web framework development.",
     technologies: ["Python", "Django", "Web Development"],
     type: "certificates",
     issuer: "Comfenalco Antioquia",
@@ -181,7 +298,8 @@ const projects: Project[] = [
   },
   {
     title: "Hacking Ético Gamificado HACKLAB",
-    description: "Ethical hacking and cybersecurity through gamified learning.",
+    descriptionEs: "Hacking ético y ciberseguridad a través de aprendizaje gamificado.",
+    descriptionEn: "Ethical hacking and cybersecurity through gamified learning.",
     technologies: ["Ethical Hacking", "Cybersecurity"],
     type: "certificates",
     issuer: "HackerMentor",
@@ -190,7 +308,8 @@ const projects: Project[] = [
   },
   {
     title: "Problem Solving (Basic)",
-    description: "Algorithmic problem solving and computational thinking.",
+    descriptionEs: "Resolución algorítmica de problemas y pensamiento computacional.",
+    descriptionEn: "Algorithmic problem solving and computational thinking.",
     technologies: ["Algorithms", "Problem Solving"],
     type: "certificates",
     issuer: "HackerRank",
@@ -200,7 +319,8 @@ const projects: Project[] = [
   },
   {
     title: "Java (Basic) Certificate",
-    description: "Java programming fundamentals certification.",
+    descriptionEs: "Certificación de fundamentos de programación Java.",
+    descriptionEn: "Java programming fundamentals certification.",
     technologies: ["Java"],
     type: "certificates",
     issuer: "HackerRank",
@@ -210,7 +330,8 @@ const projects: Project[] = [
   },
   {
     title: "CSS Certificate",
-    description: "CSS styling and web design certification.",
+    descriptionEs: "Certificación de estilizado CSS y diseño web.",
+    descriptionEn: "CSS styling and web design certification.",
     technologies: ["CSS", "HTML", "Web Design"],
     type: "certificates",
     issuer: "HackerRank",
@@ -220,7 +341,8 @@ const projects: Project[] = [
   },
   {
     title: "Python-Django",
-    description: "Django framework with Bootstrap, databases, and version control.",
+    descriptionEs: "Framework Django con Bootstrap, bases de datos y control de versiones.",
+    descriptionEn: "Django framework with Bootstrap, databases, and version control.",
     technologies: ["Python", "Django", "Bootstrap", "Databases"],
     type: "certificates",
     issuer: "Comfenalco Antioquia",
@@ -228,7 +350,8 @@ const projects: Project[] = [
   },
   {
     title: "Python (Basic) Certificate",
-    description: "Python programming fundamentals.",
+    descriptionEs: "Fundamentos de programación Python.",
+    descriptionEn: "Python programming fundamentals.",
     technologies: ["Python"],
     type: "certificates",
     issuer: "HackerRank",
@@ -237,7 +360,8 @@ const projects: Project[] = [
   },
   {
     title: "SQL (Basic) Certificate",
-    description: "SQL database management and queries.",
+    descriptionEs: "Gestión de bases de datos SQL y consultas.",
+    descriptionEn: "SQL database management and queries.",
     technologies: ["SQL", "MySQL", "Databases"],
     type: "certificates",
     issuer: "HackerRank",
@@ -246,7 +370,8 @@ const projects: Project[] = [
   },
   {
     title: "Introducción al Excel Profesional",
-    description: "Professional Excel fundamentals.",
+    descriptionEs: "Fundamentos profesionales de Excel.",
+    descriptionEn: "Professional Excel fundamentals.",
     technologies: ["Excel", "Microsoft Office"],
     type: "certificates",
     issuer: "Cámara de Comercio",
@@ -254,7 +379,8 @@ const projects: Project[] = [
   },
   {
     title: "Fundamentos de Programación 1 & 2",
-    description: "Programming fundamentals with functional programming concepts.",
+    descriptionEs: "Fundamentos de programación con conceptos de programación funcional.",
+    descriptionEn: "Programming fundamentals with functional programming concepts.",
     technologies: ["Programming", "Bootstrap", "Frontend"],
     type: "certificates",
     issuer: "Universidad Tecnológica de Pereira",
@@ -262,7 +388,8 @@ const projects: Project[] = [
   },
   {
     title: "Introducción a la Programación Python",
-    description: "Python programming introduction.",
+    descriptionEs: "Introducción a la programación con Python.",
+    descriptionEn: "Python programming introduction.",
     technologies: ["Python"],
     type: "certificates",
     issuer: "Universidad EIA",
@@ -270,7 +397,8 @@ const projects: Project[] = [
   },
   {
     title: "Introduction to HTML",
-    description: "HTML fundamentals for web development.",
+    descriptionEs: "Fundamentos de HTML para desarrollo web.",
+    descriptionEn: "HTML fundamentals for web development.",
     technologies: ["HTML", "Web Development"],
     type: "certificates",
     issuer: "Coursera",
@@ -278,9 +406,25 @@ const projects: Project[] = [
   },
 ];
 
+const getOrgIcon = (icon: Organization["icon"]) => {
+  switch (icon) {
+    case "graduation":
+      return GraduationCap;
+    case "wrench":
+      return Wrench;
+    case "leaf":
+      return Leaf;
+    case "users":
+    default:
+      return Users;
+  }
+};
+
 const ProjectsSection = () => {
   const [filter, setFilter] = useState<FilterType>("all");
-  const { t } = useLanguage();
+  const [expandedOrg, setExpandedOrg] = useState<string | null>(null);
+  const [expandedProject, setExpandedProject] = useState<string | null>(null);
+  const { t, lang } = useLanguage();
 
   const filterButtons: { label: string; value: FilterType; icon: React.ElementType }[] = [
     { label: t("projects.filters.all"), value: "all", icon: FileCode },
@@ -291,10 +435,17 @@ const ProjectsSection = () => {
   ];
 
   const filteredProjects = projects.filter(
-    (project) => filter === "all" || project.type === filter
+    (project) => filter === "all" || filter === "organizations" || filter === "repositories" || project.type === filter
   );
 
   const certificateCount = projects.filter(p => p.type === "certificates").length;
+  const orgCount = organizations.length;
+  const totalRepoCount = organizations.reduce((acc, org) => acc + org.repositories.length, 0);
+
+  const showOrganizations = filter === "all" || filter === "organizations";
+  const showRepositories = filter === "repositories";
+  const showProjects = filter === "all" || filter === "projects";
+  const showCertificates = filter === "all" || filter === "certificates";
 
   return (
     <section id="projects" className="py-20 md:py-32">
@@ -324,106 +475,391 @@ const ProjectsSection = () => {
                   {certificateCount}
                 </span>
               )}
+              {btn.value === "organizations" && (
+                <span className="ml-1 px-1.5 py-0.5 text-xs bg-primary/20 rounded-full">
+                  {orgCount}
+                </span>
+              )}
+              {btn.value === "repositories" && (
+                <span className="ml-1 px-1.5 py-0.5 text-xs bg-primary/20 rounded-full">
+                  {totalRepoCount}
+                </span>
+              )}
             </Button>
           ))}
         </div>
 
-        {/* Organizations View */}
-        {filter === "organizations" && (
-          <OrganizationsSection />
+        {/* Organizations Section */}
+        {showOrganizations && (
+          <div className="mb-12">
+            <h3 className="text-xl font-serif font-bold mb-6 text-center gradient-text flex items-center justify-center gap-2">
+              <Users className="h-5 w-5" />
+              {lang === "es" ? "Organizaciones de GitHub" : "GitHub Organizations"}
+            </h3>
+            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+              {organizations.map((org, index) => {
+                const IconComponent = getOrgIcon(org.icon);
+                const isExpanded = expandedOrg === org.name;
+                
+                return (
+                  <div
+                    key={org.name}
+                    className="group p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 glow-hover animate-fade-in-bounce"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    {/* Org Header */}
+                    <div className="flex items-start gap-3 mb-3">
+                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                        <IconComponent className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                          {org.name}
+                        </h4>
+                        <span className="text-xs text-muted-foreground">
+                          {org.repositories.length} {t("projects.repoCount")}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+                      {lang === "es" ? org.descriptionEs : org.descriptionEn}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {org.technologies.slice(0, 5).map((tech) => (
+                        <span key={tech} className="tech-badge text-xs py-0.5 px-2">
+                          {tech}
+                        </span>
+                      ))}
+                      {org.technologies.length > 5 && (
+                        <span className="text-xs text-muted-foreground">
+                          +{org.technologies.length - 5}
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Metrics Image */}
+                    <div className="mb-4 overflow-hidden rounded-lg border border-border">
+                      <img
+                        src={org.metricsUrl}
+                        alt={`${org.name} metrics`}
+                        className="w-full"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    {/* Toggle Repositories */}
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="w-full mb-3"
+                      onClick={() => setExpandedOrg(isExpanded ? null : org.name)}
+                    >
+                      <FolderGit2 className="h-4 w-4 mr-2" />
+                      {isExpanded 
+                        ? (lang === "es" ? "Ocultar Repositorios" : "Hide Repositories")
+                        : (lang === "es" ? `Ver ${org.repositories.length} Repositorios` : `View ${org.repositories.length} Repositories`)
+                      }
+                    </Button>
+
+                    {/* Expanded Repositories */}
+                    {isExpanded && (
+                      <div className="grid grid-cols-1 gap-2 pt-3 border-t border-border animate-fade-in">
+                        {org.repositories.map((repo) => (
+                          <a
+                            key={repo.name}
+                            href={`https://github.com/${repo.owner}/${repo.name}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 p-2 rounded-md bg-muted/50 hover:bg-primary/10 transition-colors text-sm"
+                          >
+                            <FolderGit2 className="h-4 w-4 text-primary" />
+                            <span className="text-foreground hover:text-primary transition-colors">
+                              {repo.name}
+                            </span>
+                          </a>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Actions */}
+                    <div className="flex gap-3 pt-3 border-t border-border/50">
+                      <a
+                        href={org.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <Github className="h-4 w-4" />
+                        {t("projects.viewOrg")}
+                      </a>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         )}
 
-        {/* Projects/Certificates Grid */}
-        {filter !== "organizations" && (
-          <div className={`grid gap-6 max-w-6xl mx-auto ${
-            filter === "certificates" 
-              ? "md:grid-cols-2 lg:grid-cols-3" 
-              : "md:grid-cols-2 lg:grid-cols-3"
-          }`}>
-            {filteredProjects.map((project, index) => (
-              <div
-                key={`${project.title}-${index}`}
-                className={`group p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 ease-out-bounce glow-hover animate-fade-in-bounce ${
-                  project.featured ? "md:col-span-2 lg:col-span-2" : ""
-                }`}
-                style={{ animationDelay: `${(index % 9) * 50}ms` }}
-              >
-                {project.featured && (
-                  <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full mb-3">
-                    <Sparkles className="h-3 w-3" />
-                    {t("projects.featured")}
+        {/* All Repositories Section (when filter is "repositories") */}
+        {showRepositories && (
+          <div className="mb-12">
+            <h3 className="text-xl font-serif font-bold mb-6 text-center gradient-text flex items-center justify-center gap-2">
+              <FolderGit2 className="h-5 w-5" />
+              {lang === "es" ? "Todos los Repositorios" : "All Repositories"}
+            </h3>
+            {organizations.map((org, orgIndex) => (
+              <div key={org.name} className="mb-8">
+                <h4 className="text-lg font-semibold mb-4 flex items-center gap-2 text-foreground">
+                  {(() => {
+                    const Icon = getOrgIcon(org.icon);
+                    return <Icon className="h-5 w-5 text-primary" />;
+                  })()}
+                  {org.name}
+                  <span className="text-sm text-muted-foreground font-normal">
+                    ({org.repositories.length} repos)
                   </span>
-                )}
-
-                {/* Certificate Header */}
-                {project.type === "certificates" && project.issuer && (
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
-                      <Building2 className="h-3 w-3" />
-                      {project.issuer}
-                    </span>
-                    {project.date && (
-                      <span className="inline-flex items-center gap-1 text-xs font-mono text-primary">
-                        <Calendar className="h-3 w-3" />
-                        {project.date}
-                      </span>
-                    )}
-                  </div>
-                )}
-                
-                <h3 className="text-lg font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                  {project.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-sm mb-3 leading-relaxed line-clamp-2">
-                  {project.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-1.5 mb-3">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <span key={tech} className="tech-badge text-xs py-0.5 px-2">
-                      {tech}
-                    </span>
+                </h4>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {org.repositories.map((repo, repoIndex) => (
+                    <a
+                      key={repo.name}
+                      href={`https://github.com/${repo.owner}/${repo.name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group p-4 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 glow-hover animate-fade-in-bounce"
+                      style={{ animationDelay: `${(orgIndex * 10 + repoIndex) * 30}ms` }}
+                    >
+                      <div className="flex items-center gap-3">
+                        <FolderGit2 className="h-5 w-5 text-primary" />
+                        <div className="flex-1 min-w-0">
+                          <h5 className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                            {repo.name}
+                          </h5>
+                          <p className="text-xs text-muted-foreground">{repo.owner}</p>
+                        </div>
+                        <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                      </div>
+                    </a>
                   ))}
-                  {project.technologies.length > 4 && (
-                    <span className="text-xs text-muted-foreground">
-                      +{project.technologies.length - 4}
-                    </span>
-                  )}
-                </div>
-                
-                <div className="flex gap-3 mt-auto pt-2 border-t border-border/50">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <Github className="h-4 w-4" />
-                      {t("projects.viewCode")}
-                    </a>
-                  )}
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                    >
-                      <ExternalLink className="h-4 w-4" />
-                      {project.type === "certificates" ? t("projects.viewCredential") : t("projects.view")}
-                    </a>
-                  )}
-                  {project.type === "certificates" && !project.link && (
-                    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                      <Award className="h-3 w-3 text-primary" />
-                      {t("projects.verifiedCertificate")}
-                    </span>
-                  )}
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Projects Grid (Featured) */}
+        {showProjects && (
+          <div className="mb-12">
+            <h3 className="text-xl font-serif font-bold mb-6 text-center gradient-text flex items-center justify-center gap-2">
+              <Sparkles className="h-5 w-5" />
+              {lang === "es" ? "Proyectos Destacados" : "Featured Projects"}
+            </h3>
+            <div className="grid gap-6 max-w-6xl mx-auto">
+              {filteredProjects
+                .filter(p => p.type === "projects")
+                .map((project, index) => {
+                  const isExpanded = expandedProject === project.title;
+                  const fullDescription = lang === "es" ? project.fullDescriptionEs : project.fullDescriptionEn;
+                  
+                  return (
+                    <div
+                      key={`${project.title}-${index}`}
+                      className={`group p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 ease-out-bounce glow-hover animate-fade-in-bounce ${
+                        project.featured ? "lg:col-span-2" : ""
+                      }`}
+                      style={{ animationDelay: `${(index % 9) * 50}ms` }}
+                    >
+                      {/* Header with badges */}
+                      <div className="flex flex-wrap items-center gap-2 mb-4">
+                        {project.featured && (
+                          <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full">
+                            <Sparkles className="h-3 w-3" />
+                            {t("projects.featured")}
+                          </span>
+                        )}
+                        {project.date && (
+                          <span className="inline-flex items-center gap-1 px-2 py-1 text-xs font-mono text-muted-foreground bg-muted rounded-full">
+                            <Calendar className="h-3 w-3" />
+                            {project.date} - {project.dateEnd || (lang === "es" ? "Actualidad" : "Present")}
+                          </span>
+                        )}
+                        {project.association && (
+                          <span className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded-full">
+                            <Building2 className="h-3 w-3" />
+                            {project.association}
+                          </span>
+                        )}
+                        {project.collaborators && (
+                          <span className="inline-flex items-center gap-1 px-2 py-1 text-xs text-muted-foreground bg-muted rounded-full">
+                            <Users className="h-3 w-3" />
+                            {project.collaborators} {lang === "es" ? "colaboradores" : "collaborators"}
+                          </span>
+                        )}
+                      </div>
+                      
+                      <h3 className="text-2xl font-serif font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      
+                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                        {lang === "es" ? project.descriptionEs : project.descriptionEn}
+                      </p>
+
+                      {/* Expandable full description */}
+                      {fullDescription && (
+                        <>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="mb-4 text-primary"
+                            onClick={() => setExpandedProject(isExpanded ? null : project.title)}
+                          >
+                            {isExpanded ? (
+                              <>
+                                <ChevronUp className="h-4 w-4 mr-1" />
+                                {lang === "es" ? "Ver menos" : "Show less"}
+                              </>
+                            ) : (
+                              <>
+                                <ChevronDown className="h-4 w-4 mr-1" />
+                                {lang === "es" ? "Ver descripción completa" : "Show full description"}
+                              </>
+                            )}
+                          </Button>
+                          
+                          {isExpanded && (
+                            <div className="mb-4 p-4 rounded-lg bg-muted/50 border border-border animate-fade-in">
+                              <div className="prose prose-sm dark:prose-invert max-w-none">
+                                {fullDescription.split('\n\n').map((paragraph, i) => (
+                                  <p key={i} className="text-muted-foreground mb-3 last:mb-0 whitespace-pre-line">
+                                    {paragraph}
+                                  </p>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      )}
+                      
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {project.technologies.slice(0, isExpanded ? undefined : 8).map((tech) => (
+                          <span key={tech} className="tech-badge text-xs py-1 px-2.5">
+                            {tech}
+                          </span>
+                        ))}
+                        {!isExpanded && project.technologies.length > 8 && (
+                          <span className="inline-flex items-center text-xs text-primary font-medium">
+                            +{project.technologies.length - 8} {lang === "es" ? "más" : "more"}
+                          </span>
+                        )}
+                      </div>
+                      
+                      {/* Actions */}
+                      <div className="flex gap-3 pt-4 border-t border-border/50">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors"
+                          >
+                            <Github className="h-4 w-4" />
+                            {t("projects.viewCode")}
+                          </a>
+                        )}
+                        {project.link && (
+                          <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium bg-muted text-foreground rounded-lg hover:bg-accent transition-colors"
+                          >
+                            <ExternalLink className="h-4 w-4" />
+                            {t("projects.view")}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        )}
+
+        {/* Certificates Grid */}
+        {showCertificates && (
+          <div className="grid gap-6 max-w-6xl mx-auto md:grid-cols-2 lg:grid-cols-3">
+            {filteredProjects
+              .filter(p => p.type === "certificates")
+              .map((project, index) => (
+                <div
+                  key={`${project.title}-${index}`}
+                  className="group p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 ease-out-bounce glow-hover animate-fade-in-bounce"
+                  style={{ animationDelay: `${(index % 9) * 50}ms` }}
+                >
+                  {/* Certificate Header */}
+                  {project.issuer && (
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                        <Building2 className="h-3 w-3" />
+                        {project.issuer}
+                      </span>
+                      {project.date && (
+                        <span className="inline-flex items-center gap-1 text-xs font-mono text-primary">
+                          <Calendar className="h-3 w-3" />
+                          {project.date}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  
+                  <h3 className="text-lg font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {project.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground text-sm mb-3 leading-relaxed line-clamp-2">
+                    {lang === "es" ? project.descriptionEs : project.descriptionEn}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-1.5 mb-3">
+                    {project.technologies.slice(0, 4).map((tech) => (
+                      <span key={tech} className="tech-badge text-xs py-0.5 px-2">
+                        {tech}
+                      </span>
+                    ))}
+                    {project.technologies.length > 4 && (
+                      <span className="text-xs text-muted-foreground">
+                        +{project.technologies.length - 4}
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="flex gap-3 mt-auto pt-2 border-t border-border/50">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        <ExternalLink className="h-4 w-4" />
+                        {t("projects.viewCredential")}
+                      </a>
+                    )}
+                    {!project.link && (
+                      <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                        <Award className="h-3 w-3 text-primary" />
+                        {t("projects.verifiedCertificate")}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
           </div>
         )}
 
