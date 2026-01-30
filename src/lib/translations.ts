@@ -5,10 +5,121 @@ export const translations = {
   nav: {
     home: { es: "Inicio", en: "Home" },
     about: { es: "Sobre Mí", en: "About" },
+    profile: { es: "Perfil", en: "Profile" },
+    resume: { es: "CV", en: "Resume" },
     experience: { es: "Experiencia", en: "Experience" },
     skills: { es: "Habilidades", en: "Skills" },
     projects: { es: "Proyectos", en: "Projects" },
     contact: { es: "Contacto", en: "Contact" },
+  },
+
+  // Profile Section
+  profile: {
+    title: { es: "Perfil Profesional", en: "Professional Profile" },
+    subtitle: { 
+      es: "Especialista en Backend, CRM & Automatización | Analista de Datos", 
+      en: "Backend, CRM & Automation Specialist | Data Analyst" 
+    },
+    headline: {
+      es: "Ingeniero Informático en Formación | Especialista en Backend, CRM & Automatización | Analista de Datos",
+      en: "Computer Engineer in Training | Backend, CRM & Automation Specialist | Data Analyst",
+    },
+    summary1: {
+      es: "Profesional en el área tecnológica con una sólida base académica en Ingeniería Informática (Politécnico Jaime Isaza Cadavid) y una trayectoria práctica destacada en el desarrollo de soluciones empresariales. Me especializo en la convergencia entre el Desarrollo Backend, la Gestión de CRM (Ecosistema Zoho) y el Análisis de Datos.",
+      en: "Technology professional with a solid academic foundation in Computer Engineering (Politécnico Jaime Isaza Cadavid) and a distinguished practical track record in developing enterprise solutions. I specialize in the convergence of Backend Development, CRM Management (Zoho Ecosystem), and Data Analysis.",
+    },
+    summary2: {
+      es: "Cuento con experiencia comprobada en la arquitectura de integraciones complejas (APIs REST), automatización de procesos de negocio (MarTech) y despliegue de infraestructura en la nube (Docker, VPS). Mi enfoque no es solo técnico; combino la lógica de ingeniería con una visión estratégica de negocio para crear soluciones escalables que optimizan la operatividad, mejoran la toma de decisiones y potencian la transformación digital. Soy autodidacta, proactivo y apasionado por la investigación y el aprendizaje continuo.",
+      en: "I have proven experience in complex integration architecture (REST APIs), business process automation (MarTech), and cloud infrastructure deployment (Docker, VPS). My approach is not just technical; I combine engineering logic with a strategic business vision to create scalable solutions that optimize operations, improve decision-making, and drive digital transformation. I am self-taught, proactive, and passionate about research and continuous learning.",
+    },
+    rolesTitle: { es: "Roles que Puedo Desempeñar", en: "Roles I Can Perform" },
+    rolesDescription: {
+      es: "Dada mi versatilidad y experiencia 'Full Cycle' (desde el dato hasta la interfaz y la infraestructura), encajo perfectamente en estos roles:",
+      en: "Given my versatility and 'Full Cycle' experience (from data to interface and infrastructure), I fit perfectly into these roles:",
+    },
+    roles: {
+      zoho: { es: "Zoho Developer / Consultant", en: "Zoho Developer / Consultant" },
+      backend: { es: "Backend Developer", en: "Backend Developer" },
+      dataAnalyst: { es: "Data Analyst / BI Developer", en: "Data Analyst / BI Developer" },
+      integration: { es: "Integration Engineer", en: "Integration Engineer" },
+      martech: { es: "MarTech Engineer", en: "MarTech Engineer" },
+      itManager: { es: "IT Manager", en: "IT Manager" },
+      iot: { es: "IoT Software Engineer", en: "IoT Software Engineer" },
+    },
+    servicesTitle: { es: "Servicios que Ofrezco", en: "Services I Offer" },
+    servicesSubtitle: {
+      es: "Soluciones empaquetadas para impulsar tu negocio",
+      en: "Packaged solutions to boost your business",
+    },
+    services: {
+      crm: {
+        title: { es: "Desarrollo y Automatización CRM (Zoho)", en: "CRM Development & Automation (Zoho)" },
+        item1: { es: "Implementación y personalización avanzada de Zoho CRM", en: "Advanced Zoho CRM implementation and customization" },
+        item2: { es: "Desarrollo de scripts en Deluge para automatizaciones a medida", en: "Deluge script development for custom automations" },
+        item3: { es: "Creación de aplicaciones empresariales en Zoho Creator", en: "Enterprise application development in Zoho Creator" },
+        item4: { es: "Diseño de dashboards en Zoho Analytics", en: "Dashboard design in Zoho Analytics" },
+      },
+      backend: {
+        title: { es: "Ingeniería de Integraciones y Backend", en: "Integration & Backend Engineering" },
+        item1: { es: "Desarrollo de APIs RESTful personalizadas (Python/Java)", en: "Custom RESTful API development (Python/Java)" },
+        item2: { es: "Sincronización de bases de datos externas con CRMs", en: "External database synchronization with CRMs" },
+        item3: { es: "Integración de WhatsApp API con sistemas de gestión", en: "WhatsApp API integration with management systems" },
+      },
+      bi: {
+        title: { es: "Inteligencia de Negocios y Datos", en: "Business Intelligence & Data" },
+        item1: { es: "Auditoría y limpieza de bases de datos (Data Quality)", en: "Database audit and cleaning (Data Quality)" },
+        item2: { es: "Dashboards interactivos en Power BI", en: "Interactive Power BI dashboards" },
+        item3: { es: "Automatización de reportes operativos", en: "Operational report automation" },
+      },
+      infra: {
+        title: { es: "Infraestructura y Despliegue", en: "Infrastructure & Deployment" },
+        item1: { es: "Configuración y administración de servidores VPS (Linux)", en: "VPS server configuration and administration (Linux)" },
+        item2: { es: "Despliegue de aplicaciones con Docker", en: "Application deployment with Docker" },
+        item3: { es: "Configuración de servidores web seguros (Nginx, SSL)", en: "Secure web server configuration (Nginx, SSL)" },
+      },
+    },
+    benefitsTitle: { es: "¿Por Qué Contratarme?", en: "Why Hire Me?" },
+    benefitsSubtitle: {
+      es: "Mi propuesta de valor para tu empresa",
+      en: "My value proposition for your company",
+    },
+    benefits: {
+      vision: {
+        title: { es: "Visión de Negocio + Capacidad Técnica", en: "Business Vision + Technical Capability" },
+        description: {
+          es: "No solo escribo código; entiendo para qué sirve. Propongo soluciones que aportan valor real al negocio, no solo soluciones técnicas.",
+          en: "I don't just write code; I understand what it's for. I propose solutions that add real business value, not just technical solutions.",
+        },
+      },
+      costs: {
+        title: { es: "Reducción de Costos Operativos", en: "Operational Cost Reduction" },
+        description: {
+          es: "Experto en automatización (CRM, n8n, Scripts) que elimina tareas repetitivas, permitiendo que los equipos se enfoquen en la estrategia.",
+          en: "Expert in automation (CRM, n8n, Scripts) that eliminates repetitive tasks, allowing teams to focus on strategy.",
+        },
+      },
+      integration: {
+        title: { es: "Integración Total de Datos", en: "Total Data Integration" },
+        description: {
+          es: "Unifico datos dispersos (Excel, CRM, Web), haciendo que la información fluya automáticamente entre departamentos.",
+          en: "I unify scattered data (Excel, CRM, Web), making information flow automatically between departments.",
+        },
+      },
+      autonomy: {
+        title: { es: "Autonomía y Curiosidad", en: "Autonomy & Curiosity" },
+        description: {
+          es: "Soy un 'solucionador'. No necesito supervisión constante y tengo la iniciativa de aprender nuevas tecnologías para resolver problemas inéditos.",
+          en: "I'm a 'problem solver'. I don't need constant supervision and take initiative to learn new technologies to solve novel problems.",
+        },
+      },
+      versatility: {
+        title: { es: "Versatilidad 'Navaja Suiza'", en: "'Swiss Army Knife' Versatility" },
+        description: {
+          es: "Puedo trabajar con Marketing, Finanzas y TI. Esto reduce la necesidad de contratar tres perfiles diferentes.",
+          en: "I can work with Marketing, Finance, and IT. This reduces the need to hire three different profiles.",
+        },
+      },
+    },
   },
 
   // Hero Section
