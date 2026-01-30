@@ -74,7 +74,7 @@ export const translations = {
     inProgress: { es: "En Curso", en: "In Progress" },
     degrees: {
       bachelor: {
-        es: "Ingeniería de Computación",
+        es: "Ingeniería Informática",
         en: "Bachelor's in Computer Engineering",
       },
       technician: {
@@ -84,6 +84,10 @@ export const translations = {
       assistant: {
         es: "Técnico Auxiliar en Desarrollo de Software",
         en: "Assistant Software Development Technician",
+      },
+      highschool: {
+        es: "Bachiller con Especialización en Informática",
+        en: "High School with Computer Science Specialization",
       },
     },
   },

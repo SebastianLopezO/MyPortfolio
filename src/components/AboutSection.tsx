@@ -28,18 +28,27 @@ const AboutSection = () => {
     {
       period: "2022–2027",
       degree: t("about.degrees.bachelor"),
-      school: "Politécnico Jaime Isaza Cadavid",
+      school: "Politécnico Colombiano Jaime Isaza Cadavid",
       status: t("about.inProgress"),
+      skills: ["Systems Engineering", "Analytics", "Programming", "MySQL"],
     },
     {
       period: "2022–2023",
       degree: t("about.degrees.technician"),
-      school: "SENA – IUSH",
+      school: "SENA – Institución Universitaria Salazar y Herrera (IUSH)",
+      skills: ["Version Control", "Data Modeling", "Databases", "Web Dev"],
     },
     {
       period: "2020–2021",
       degree: t("about.degrees.assistant"),
-      school: "Institución Educativa Pascual Bravo",
+      school: "Institución Universitaria Pascual Bravo",
+      skills: ["Databases", "Programming", "Web Apps", "Functional Programming"],
+    },
+    {
+      period: "2019–2021",
+      degree: t("about.degrees.highschool"),
+      school: "I.E. Inem José Félix de Restrepo",
+      skills: ["Computer Science", "Mathematics", "Logic"],
     },
   ];
 
@@ -110,14 +119,14 @@ const AboutSection = () => {
             <h3 className="text-2xl font-serif font-bold gradient-text">{t("about.education")}</h3>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {education.map((edu, index) => (
               <div
                 key={edu.degree}
                 className="p-6 rounded-lg bg-background border border-border hover:border-primary/50 transition-all duration-300 glow-hover animate-fade-in-bounce"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="flex items-center gap-2 mb-3">
+                <div className="flex items-center gap-2 mb-3 flex-wrap">
                   <Calendar className="h-4 w-4 text-primary" />
                   <span className="text-sm font-mono text-primary">{edu.period}</span>
                   {edu.status && (
@@ -127,7 +136,16 @@ const AboutSection = () => {
                   )}
                 </div>
                 <h4 className="font-serif font-bold text-foreground mb-2">{edu.degree}</h4>
-                <p className="text-sm text-muted-foreground">{edu.school}</p>
+                <p className="text-sm text-muted-foreground mb-3">{edu.school}</p>
+                {edu.skills && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {edu.skills.map((skill) => (
+                      <span key={skill} className="tech-badge text-xs py-0.5 px-2">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
