@@ -13,7 +13,7 @@ export const translations = {
 
   // Hero Section
   hero: {
-    greeting: { es: "&lt;hola mundo /&gt;", en: "&lt;hello world /&gt;" },
+    greeting: { es: "Hola, Mundo!", en: "Hello, World!" },
     title: { es: "Hola 👋, Soy", en: "Hi 👋, I'm" },
     role1: { es: "Backend Developer", en: "Backend Developer" },
     role2: { es: "Data Analyst", en: "Data Analyst" },
@@ -41,26 +41,21 @@ export const translations = {
       es: '"La ingeniería es el arte de entender sistemas complejos"',
       en: '"Engineering is the art of understanding complex systems"',
     },
+    intro: {
+      es: "Soy Sebastián López, estudiante de Ingeniería Informática apasionado por el desarrollo de software y el análisis de datos.",
+      en: "I am Sebastián López, a Computer Engineering student passionate about software development and data analysis.",
+    },
     paragraph1: {
-      es: "Soy un estudiante de",
-      en: "I am a passionate and proactive",
-    },
-    role: {
-      es: "Ingeniería de Computación",
-      en: "Computer Engineering student",
-    },
-    from: { es: "de", en: "from" },
-    paragraph1End: {
-      es: ", impulsado por una curiosidad insaciable y un fuerte compromiso con el aprendizaje continuo.",
-      en: ", driven by an insatiable curiosity and a strong commitment to continuous learning.",
+      es: "Soy una persona con iniciativa y una curiosidad insaciable que me ha llevado a aprender de forma autodidacta en mi campo de interés. Mis habilidades investigativas, analíticas y capacidad de aprendizaje han sido cruciales en este proceso.",
+      en: "My academic background provides a strong foundation in computational thinking and problem-solving, enabling me to create efficient solutions for complex challenges.",
     },
     paragraph2: {
-      es: "Mis experiencias académicas y profesionales me han formado como un individuo versátil capaz de abordar desafíos complejos a través del pensamiento analítico, la creatividad y el trabajo en equipo. Destaco por mi mentalidad investigativa, mi capacidad de aprender de forma autónoma y mi dedicación a mejorar tanto los resultados individuales como colectivos.",
-      en: "My academic and professional experiences have shaped me into a versatile individual capable of tackling complex challenges through analytical thinking, creativity, and teamwork. I stand out for my investigative mindset, my ability to learn independently, and my dedication to improving both individual and collective outcomes.",
+      es: "Mi formación abarca diversos conocimientos con enfoque al área tecnológica, logrando desarrollar una pasión por el conocimiento y viendo la educación como un impulso para mi formación como persona y como profesional.",
+      en: "I enjoy combining my technical skills with my curiosity to continuously learn new technologies and improve my craft.",
     },
     paragraph3: {
-      es: "Veo la ingeniería no solo como el dominio de herramientas, sino como el arte de entender sistemas complejos, hacer las preguntas correctas y construir soluciones reflexivas, sostenibles y centradas en el ser humano.",
-      en: "I see engineering not just as the mastery of tools, but as the art of understanding complex systems, asking the right questions, and building thoughtful, sustainable, and human-centered solutions.",
+      es: "Mis experiencias académicas y profesionales me han formado como un individuo versátil capaz de abordar desafíos complejos a través del pensamiento analítico, la creatividad y el trabajo en equipo.",
+      en: "My academic and professional experiences have shaped me into a versatile individual capable of tackling complex challenges through analytical thinking, creativity, and teamwork.",
     },
     stats: {
       backendDev: { es: "Backend Dev", en: "Backend Dev" },

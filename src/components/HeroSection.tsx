@@ -1,11 +1,14 @@
 import { ArrowDown, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useTypewriter } from "@/hooks/useTypewriter";
 import profileImage from "@/assets/profile.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const greetingText = t("hero.greeting");
+  const { displayText, isComplete } = useTypewriter({ text: greetingText, speed: 80, delay: 500 });
 
   return (
     <section
@@ -44,7 +47,8 @@ const HeroSection = () => {
             </div>
 
             <p className="text-primary font-mono text-sm md:text-base mb-4 tracking-wider">
-              {t("hero.greeting")}
+              {displayText}
+              <span className={`inline-block w-0.5 h-4 md:h-5 bg-primary ml-1 align-middle ${isComplete ? 'animate-pulse' : 'animate-[blink_0.7s_infinite]'}`} />
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
               {t("hero.title")}{" "}

@@ -76,13 +76,14 @@ const AboutSection = () => {
 
           {/* Text Content */}
           <div className="space-y-6 animate-fade-in-bounce delay-200">
-            <p className="text-lg text-foreground leading-relaxed">
-              {t("about.paragraph1")}{" "}
-              <span className="text-primary font-semibold">{t("about.role")}</span> {t("about.from")}{" "}
-              <span className="text-primary font-semibold">{t("hero.location")}</span>
-              {t("about.paragraph1End")}
+            <p className="text-xl text-foreground leading-relaxed font-medium">
+              {t("about.intro")}
             </p>
             
+            <p className="text-muted-foreground leading-relaxed">
+              {t("about.paragraph1")}
+            </p>
+
             <p className="text-muted-foreground leading-relaxed">
               {t("about.paragraph2")}
             </p>

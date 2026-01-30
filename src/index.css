@@ -222,6 +222,11 @@
     to { width: 100%; }
   }
 
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
   @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: hsl(var(--primary)); }
