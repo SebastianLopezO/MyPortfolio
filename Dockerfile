@@ -6,14 +6,15 @@ FROM node:20-alpine AS build
 WORKDIR /app
 
 # Activar pnpm
-RUN corepack enable && corepack prepare pnpm@10.12.4 --activate
+RUN corepack enable && corepack prepare pnpm@10.28.2 --activate
 
 # Copiar dependencias primero (mejor cache)
 COPY package.json pnpm-lock.yaml ./
 
+# Instalar dependencias
 RUN pnpm install --frozen-lockfile
 
-# Copiar resto del proyecto
+# Copiar el resto del proyecto
 COPY . .
 
 # Build Vite
@@ -21,23 +22,21 @@ RUN pnpm run build
 
 
 # ===============================
-# Stage 2: Producción (serve)
+# Stage 2: Producción (Nginx)
 # ===============================
-FROM node:20-alpine
+FROM nginx:alpine
 
-WORKDIR /app
+# Eliminar config default de nginx
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Activar pnpm
-RUN corepack enable && corepack prepare pnpm@10.12.4 --activate
-
-# Instalar servidor liviano
-RUN pnpm add -g serve
+# Configuración personalizada para SPA (Vite)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copiar build compilado
-COPY --from=build /app/dist ./dist
+COPY --from=build /app/dist /usr/share/nginx/html
 
-# Exponer puerto Vite/Serve
-EXPOSE 5173
+# Exponer puerto HTTP
+EXPOSE 80
 
-# Ejecutar servidor
-CMD ["serve", "-s", "dist", "-l", "5173"]
+# Ejecutar nginx
+CMD ["nginx", "-g", "daemon off;"]
