@@ -12,24 +12,24 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import Footer from "@/components/Footer";
 
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navigation />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ProfileSection />
-        <ResumeSection />
-        <ExperienceSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <TestimonialsSection />
-        <ContactSection />
-      </main>
-      <WhatsAppButton />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="min-h-screen bg-background text-foreground">
+            <Navigation/>
+            <main>
+                <HeroSection/>
+                <AboutSection/>
+                <ProfileSection/>
+                <ResumeSection/>
+                <ExperienceSection/>
+                <SkillsSection/>
+                <ProjectsSection/>
+                <TestimonialsSection/>
+                <ContactSection/>
+            </main>
+            <WhatsAppButton/>
+            <Footer/>
+        </div>
+    );
 };
 
 export default Index;
