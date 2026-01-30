@@ -1,11 +1,28 @@
-import { Github, Linkedin, Twitter, Mail, Codepen } from "lucide-react";
+import { 
+  Github, 
+  Linkedin, 
+  Twitter, 
+  Mail, 
+  Codepen, 
+  Instagram,
+  ExternalLink
+} from "lucide-react";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-  { icon: Codepen, href: "https://codepen.io", label: "CodePen" },
-  { icon: Mail, href: "mailto:hello@sebastianlopez.dev", label: "Email" },
+  { icon: Github, href: "https://github.com/SebastianLopezO", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/sebastián-lópez-osorio/", label: "LinkedIn" },
+  { icon: Twitter, href: "https://twitter.com/sebastianlopo_", label: "Twitter" },
+  { icon: Instagram, href: "https://www.instagram.com/sebastianlopo_/", label: "Instagram" },
+  { icon: Codepen, href: "https://codepen.io/SebastianLopez-the-sasster", label: "CodePen" },
+  { icon: Mail, href: "mailto:sebastianlopo.tech@gmail.com", label: "Email" },
+];
+
+const additionalLinks = [
+  { name: "Stack Overflow", href: "https://stackoverflow.com/users/19369741/sebastian-lopez", color: "bg-orange-500/10 text-orange-400" },
+  { name: "Medium", href: "https://medium.com/@sebastianlopo", color: "bg-neutral-500/10 text-neutral-400" },
+  { name: "Docker Hub", href: "https://hub.docker.com/u/sebastian190030", color: "bg-blue-500/10 text-blue-400" },
+  { name: "WakaTime", href: "https://wakatime.com/@SebastianLopezO", color: "bg-purple-500/10 text-purple-400" },
+  { name: "Platzi", href: "https://platzi.com/p/SebastianLopezO/", color: "bg-green-500/10 text-green-400" },
 ];
 
 const Footer = () => {
@@ -14,6 +31,22 @@ const Footer = () => {
   return (
     <footer className="py-12 border-t border-border bg-card/50">
       <div className="container px-4">
+        {/* Additional Links */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+          {additionalLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium ${link.color} hover:scale-105 transition-transform duration-200`}
+            >
+              {link.name}
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          ))}
+        </div>
+
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo & Copyright */}
           <div className="text-center md:text-left">
