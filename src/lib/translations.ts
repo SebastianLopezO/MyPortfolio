@@ -161,6 +161,7 @@ export const translations = {
     subtitle: { es: "Mostrando innovación a través del código", en: "Showcasing innovation through code" },
     filters: {
       all: { es: "Todos", en: "All" },
+      organizations: { es: "Organizaciones", en: "Organizations" },
       repositories: { es: "Repositorios", en: "Repositories" },
       projects: { es: "Proyectos", en: "Projects" },
       certificates: { es: "Certificados", en: "Certificates" },

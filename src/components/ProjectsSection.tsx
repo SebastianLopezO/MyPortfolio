@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { ExternalLink, Github, Award, FolderGit2, FileCode, Sparkles, Calendar, Building2 } from "lucide-react";
+import { ExternalLink, Github, Award, FolderGit2, FileCode, Sparkles, Calendar, Building2, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
+import OrganizationsSection from "./OrganizationsSection";
 
-type FilterType = "all" | "repositories" | "projects" | "certificates";
+type FilterType = "all" | "organizations" | "repositories" | "projects" | "certificates";
 
 interface Project {
   title: string;
@@ -283,6 +284,7 @@ const ProjectsSection = () => {
 
   const filterButtons: { label: string; value: FilterType; icon: React.ElementType }[] = [
     { label: t("projects.filters.all"), value: "all", icon: FileCode },
+    { label: t("projects.filters.organizations"), value: "organizations", icon: Users },
     { label: t("projects.filters.repositories"), value: "repositories", icon: FolderGit2 },
     { label: t("projects.filters.projects"), value: "projects", icon: Github },
     { label: t("projects.filters.certificates"), value: "certificates", icon: Award },
@@ -326,97 +328,104 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Projects/Certificates Grid */}
-        <div className={`grid gap-6 max-w-6xl mx-auto ${
-          filter === "certificates" 
-            ? "md:grid-cols-2 lg:grid-cols-3" 
-            : "md:grid-cols-2 lg:grid-cols-3"
-        }`}>
-          {filteredProjects.map((project, index) => (
-            <div
-              key={`${project.title}-${index}`}
-              className={`group p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 ease-out-bounce glow-hover animate-fade-in-bounce ${
-                project.featured ? "md:col-span-2 lg:col-span-2" : ""
-              }`}
-              style={{ animationDelay: `${(index % 9) * 50}ms` }}
-            >
-              {project.featured && (
-                <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full mb-3">
-                  <Sparkles className="h-3 w-3" />
-                  {t("projects.featured")}
-                </span>
-              )}
+        {/* Organizations View */}
+        {filter === "organizations" && (
+          <OrganizationsSection />
+        )}
 
-              {/* Certificate Header */}
-              {project.type === "certificates" && project.issuer && (
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
-                    <Building2 className="h-3 w-3" />
-                    {project.issuer}
+        {/* Projects/Certificates Grid */}
+        {filter !== "organizations" && (
+          <div className={`grid gap-6 max-w-6xl mx-auto ${
+            filter === "certificates" 
+              ? "md:grid-cols-2 lg:grid-cols-3" 
+              : "md:grid-cols-2 lg:grid-cols-3"
+          }`}>
+            {filteredProjects.map((project, index) => (
+              <div
+                key={`${project.title}-${index}`}
+                className={`group p-5 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-500 ease-out-bounce glow-hover animate-fade-in-bounce ${
+                  project.featured ? "md:col-span-2 lg:col-span-2" : ""
+                }`}
+                style={{ animationDelay: `${(index % 9) * 50}ms` }}
+              >
+                {project.featured && (
+                  <span className="inline-flex items-center gap-1 px-3 py-1 text-xs font-semibold bg-primary/20 text-primary rounded-full mb-3">
+                    <Sparkles className="h-3 w-3" />
+                    {t("projects.featured")}
                   </span>
-                  {project.date && (
-                    <span className="inline-flex items-center gap-1 text-xs font-mono text-primary">
-                      <Calendar className="h-3 w-3" />
-                      {project.date}
+                )}
+
+                {/* Certificate Header */}
+                {project.type === "certificates" && project.issuer && (
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground">
+                      <Building2 className="h-3 w-3" />
+                      {project.issuer}
+                    </span>
+                    {project.date && (
+                      <span className="inline-flex items-center gap-1 text-xs font-mono text-primary">
+                        <Calendar className="h-3 w-3" />
+                        {project.date}
+                      </span>
+                    )}
+                  </div>
+                )}
+                
+                <h3 className="text-lg font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  {project.title}
+                </h3>
+                
+                <p className="text-muted-foreground text-sm mb-3 leading-relaxed line-clamp-2">
+                  {project.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.technologies.slice(0, 4).map((tech) => (
+                    <span key={tech} className="tech-badge text-xs py-0.5 px-2">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.technologies.length > 4 && (
+                    <span className="text-xs text-muted-foreground">
+                      +{project.technologies.length - 4}
                     </span>
                   )}
                 </div>
-              )}
-              
-              <h3 className="text-lg font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                {project.title}
-              </h3>
-              
-              <p className="text-muted-foreground text-sm mb-3 leading-relaxed line-clamp-2">
-                {project.description}
-              </p>
-              
-              <div className="flex flex-wrap gap-1.5 mb-3">
-                {project.technologies.slice(0, 4).map((tech) => (
-                  <span key={tech} className="tech-badge text-xs py-0.5 px-2">
-                    {tech}
-                  </span>
-                ))}
-                {project.technologies.length > 4 && (
-                  <span className="text-xs text-muted-foreground">
-                    +{project.technologies.length - 4}
-                  </span>
-                )}
+                
+                <div className="flex gap-3 mt-auto pt-2 border-t border-border/50">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <Github className="h-4 w-4" />
+                      {t("projects.viewCode")}
+                    </a>
+                  )}
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      {project.type === "certificates" ? t("projects.viewCredential") : t("projects.view")}
+                    </a>
+                  )}
+                  {project.type === "certificates" && !project.link && (
+                    <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
+                      <Award className="h-3 w-3 text-primary" />
+                      {t("projects.verifiedCertificate")}
+                    </span>
+                  )}
+                </div>
               </div>
-              
-              <div className="flex gap-3 mt-auto pt-2 border-t border-border/50">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <Github className="h-4 w-4" />
-                    {t("projects.viewCode")}
-                  </a>
-                )}
-                {project.link && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    {project.type === "certificates" ? t("projects.viewCredential") : t("projects.view")}
-                  </a>
-                )}
-                {project.type === "certificates" && !project.link && (
-                  <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                    <Award className="h-3 w-3 text-primary" />
-                    {t("projects.verifiedCertificate")}
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* GitHub Stats Section */}
         <div className="mt-20 animate-slide-up">
@@ -424,27 +433,161 @@ const ProjectsSection = () => {
             {t("projects.githubStats")}
           </h3>
           
-          {/* Stats Row 1 - Main Stats */}
+          {/* Profile Badges */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <img
+              src="https://komarev.com/ghpvc/?username=SebastianLopezO&label=Profile%20views&color=0e75b6&style=flat"
+              alt="Profile Views"
+              className="h-5"
+              loading="lazy"
+            />
+            <img
+              src="https://img.shields.io/github/stars/SebastianLopezO?style=flat&logo=github"
+              alt="GitHub Stars"
+              className="h-5"
+              loading="lazy"
+            />
+            <img
+              src="https://img.shields.io/github/followers/SebastianLopezO?style=flat&logo=github&label=Followers"
+              alt="Followers Count"
+              className="h-5"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Metrics Row 1 - Account Overview */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-5xl mx-auto">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.github-metrics.svg"
+              alt="GitHub Metrics"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.activity.svg"
+              alt="Activity Metrics"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Metrics Row 2 - Calendar */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-5xl mx-auto">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.isocalendar.svg"
+              alt="Isometric Calendar"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.calendar.svg"
+              alt="Calendar"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Metrics Row 3 - Follow & People */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-5xl mx-auto">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.followup.svg"
+              alt="Follow Up"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.people.svg"
+              alt="People"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Metrics Row 4 - Stars */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-5xl mx-auto">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.stargazers.svg"
+              alt="Stargazers"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.starlists.languages.svg"
+              alt="Star Lists Languages"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Metrics Row 5 - Topics */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-5xl mx-auto">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.topics.icons.svg"
+              alt="Topics Icons"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.topics.labels.svg"
+              alt="Topics Labels"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Metrics Row 6 - Languages & Habits */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6 max-w-5xl mx-auto">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.languages.details.svg"
+              alt="Languages Details"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.habits.charts.svg"
+              alt="Coding Habits"
+              className="w-full rounded-lg border border-border"
+              loading="lazy"
+            />
+          </div>
+
+          {/* WakaTime & Languages Stats */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <img
-              src="https://github-readme-stats.vercel.app/api?username=SebastianLopezO&show_icons=true&theme=dark&bg_color=0D0D0D&title_color=36BFB1&icon_color=36BFB1&text_color=F8FDFF&border_color=1a3a36&hide_border=false"
-              alt="GitHub Stats"
+              src="https://github-readme-stats-one-liart-24.vercel.app/api/wakatime?username=SebastianLopezO&layout=compact&theme=dark"
+              alt="WakaTime Stats"
               className="rounded-lg border border-border max-w-full h-auto"
               loading="lazy"
             />
             <img
-              src="https://github-readme-streak-stats.herokuapp.com/?user=SebastianLopezO&theme=dark&background=0D0D0D&ring=36BFB1&fire=36BFB1&currStreakLabel=36BFB1&border=1a3a36"
-              alt="GitHub Streak"
+              src="https://github-readme-stats-one-liart-24.vercel.app/api/top-langs/?username=SebastianLopezO&layout=donut-vertical&hide=HTML,Procfile,Papyrus&langs_count=20&theme=dark"
+              alt="Top Languages"
               className="rounded-lg border border-border max-w-full h-auto"
               loading="lazy"
             />
           </div>
 
-          {/* Stats Row 2 - Languages */}
+          {/* Streak & General Stats */}
           <div className="flex flex-wrap justify-center gap-4 mb-6">
             <img
-              src="https://github-readme-stats.vercel.app/api/top-langs/?username=SebastianLopezO&layout=compact&theme=dark&bg_color=0D0D0D&title_color=36BFB1&text_color=F8FDFF&border_color=1a3a36"
-              alt="Top Languages"
+              src="https://github-readme-streak-stats-steel-theta.vercel.app/?user=SebastianLopezO&theme=dark&hide_border=false&border_radius=10"
+              alt="GitHub Streak"
+              className="rounded-lg border border-border max-w-full h-auto"
+              loading="lazy"
+            />
+            <img
+              src="https://github-readme-stats-one-liart-24.vercel.app/api?username=SebastianLopezO&show_icons=true&theme=dark"
+              alt="GitHub Stats"
+              className="rounded-lg border border-border max-w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Activity Graph */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="https://github-readme-activity-graph.vercel.app/graph?username=SebastianLopezO&theme=high-contrast&area=true&hide_border=true&days=50"
+              alt={t("projects.activity")}
               className="rounded-lg border border-border max-w-full h-auto"
               loading="lazy"
             />
@@ -453,18 +596,28 @@ const ProjectsSection = () => {
           {/* Trophies */}
           <div className="flex justify-center mb-6 overflow-x-auto">
             <img
-              src="https://github-profile-trophy.vercel.app/?username=SebastianLopezO&theme=darkhub&no-frame=true&column=7&margin-w=15&margin-h=15"
+              src="https://github-profile-trophy-hkpvrw0xd-sebastianlopezo-projects.vercel.app/?username=SebastianLopezO&theme=onedark&row=2&column=9"
               alt="GitHub Trophies"
               className="max-w-full h-auto"
               loading="lazy"
             />
           </div>
 
-          {/* Activity Graph */}
+          {/* Snake Animation */}
+          <div className="flex justify-center mb-6">
+            <img
+              src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/output/snake.svg"
+              alt="Snake Animation"
+              className="max-w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+
+          {/* Contributor Stats */}
           <div className="flex justify-center">
             <img
-              src="https://github-readme-activity-graph.vercel.app/graph?username=SebastianLopezO&theme=react-dark&bg_color=0D0D0D&color=36BFB1&line=36BFB1&point=F8FDFF&area=true&hide_border=false"
-              alt={t("projects.activity")}
+              src="https://github-contributor-stats.vercel.app/api?username=SebastianLopezO&theme=dark&hide_contributor_rank=false"
+              alt="GitHub Contributor Stats"
               className="rounded-lg border border-border max-w-full h-auto"
               loading="lazy"
             />
