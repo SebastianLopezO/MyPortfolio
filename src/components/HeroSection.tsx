@@ -45,7 +45,7 @@ const HeroSection = () => {
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight">
               Hi 👋, I'm{" "}
-              <span className="gradient-text">Sebastian</span>
+              <span className="gradient-text">Sebastián</span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-serif text-muted-foreground mb-6">
               <span className="text-primary">Backend Developer</span> &{" "}
@@ -90,8 +90,8 @@ const HeroSection = () => {
               <div className="relative w-64 h-72 md:w-80 md:h-96 hex-card overflow-hidden border-4 border-primary/50 animate-pulse-glow">
                 <img
                   src={profileImage}
-                  alt="Sebastián López"
-                  className="w-full h-full object-cover"
+                  alt="Sebastián López Osorno"
+                  className="w-full h-full object-cover object-top"
                 />
               </div>
 

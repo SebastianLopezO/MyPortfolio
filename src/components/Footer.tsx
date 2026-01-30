@@ -5,16 +5,18 @@ import {
   Mail, 
   Codepen, 
   Instagram,
-  ExternalLink
+  ExternalLink,
+  Phone
 } from "lucide-react";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/SebastianLopezO", label: "GitHub" },
-  { icon: Linkedin, href: "https://www.linkedin.com/in/sebastián-lópez-osorio/", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/sebastianlopezosorno/", label: "LinkedIn" },
   { icon: Twitter, href: "https://twitter.com/sebastianlopo_", label: "Twitter" },
   { icon: Instagram, href: "https://www.instagram.com/sebastianlopo_/", label: "Instagram" },
   { icon: Codepen, href: "https://codepen.io/SebastianLopez-the-sasster", label: "CodePen" },
-  { icon: Mail, href: "mailto:sebastianlopo.tech@gmail.com", label: "Email" },
+  { icon: Phone, href: "tel:+573218774053", label: "Phone" },
+  { icon: Mail, href: "mailto:sebastianlopezosorno2005@gmail.com", label: "Email" },
 ];
 
 const additionalLinks = [
@@ -52,7 +54,7 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <p className="text-sm text-muted-foreground">
               © {currentYear} My Portfolio by{" "}
-              <span className="text-primary font-semibold">Sebastián López</span>.
+              <span className="text-primary font-semibold">Sebastián López Osorno</span>.
               All rights reserved.
             </p>
           </div>
@@ -63,7 +65,7 @@ const Footer = () => {
               <a
                 key={social.label}
                 href={social.href}
-                target="_blank"
+                target={social.href.startsWith("tel:") || social.href.startsWith("mailto:") ? "_self" : "_blank"}
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
                 aria-label={social.label}
