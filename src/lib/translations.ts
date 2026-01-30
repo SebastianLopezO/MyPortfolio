@@ -30,6 +30,16 @@ export const translations = {
     ctaProjects: { es: "Ver Proyectos", en: "View Projects" },
   },
 
+  // Resume Section
+  resume: {
+    title: { es: "Mi Hoja de Vida", en: "My Resume" },
+    subtitle: {
+      es: "Explora mi experiencia profesional en detalle",
+      en: "Explore my professional experience in detail",
+    },
+    download: { es: "Descargar PDF", en: "Download PDF" },
+  },
+
   // About Section
   about: {
     title: { es: "La Mentalidad del Ingeniero", en: "The Engineer's Mindset" },

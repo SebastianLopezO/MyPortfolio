@@ -73,7 +73,7 @@ const ContactSection = () => {
               </div>
 
               <a 
-                href="tel:+573218774053"
+                href="tel:+573002329213"
                 className="flex items-center gap-4 group hover:translate-x-1 transition-transform"
               >
                 <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
@@ -81,7 +81,7 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">{t("contact.phone")}</p>
-                  <p className="text-primary hover:underline">+57 321 877 4053</p>
+                  <p className="text-primary hover:underline">+57 300 232 9213</p>
                 </div>
               </a>
 
