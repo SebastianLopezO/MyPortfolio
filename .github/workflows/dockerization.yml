@@ -1,4 +1,4 @@
-name: Dockerization of web application
+name: Dockerization of web portfolio
 permissions:
   contents: read
 
