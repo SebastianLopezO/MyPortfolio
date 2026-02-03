@@ -2,8 +2,8 @@ import {ArrowDown, Eye} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {useLanguage} from "@/hooks/useLanguage";
 import {useTypewriter} from "@/hooks/useTypewriter";
-import profileImage from "@/assets/profile.jpg";
-import heroBg from "@/assets/hero-bg.jpg";
+import profileImage from "@/assets/profile.webp";
+import heroBg from "@/assets/hero-bg.webp";
 
 const HeroSection = () => {
     const {t, lang} = useLanguage();
