@@ -19,25 +19,22 @@ export default defineConfig(({mode}) => ({
         },
     },
     build: {
-        sourcemap: false,
-        rollupOptions: {
-            output: {
-                manualChunks: {
-                    'react-vendor': ['react', 'react-dom'],
-                    'framer-vendor': ['framer-motion'],
-                    'lucide-vendor': ['lucide-react'],
-                },
-            },
-        },
-        chunkSizeWarningLimit: 600,
-        minify: 'esbuild',
-        cssMinify: true,
-        cssCodeSplit: true,
-        terserOptions: mode === 'production' ? {
+        minify: 'terser',
+        terserOptions: {
             compress: {
                 drop_console: true,
                 drop_debugger: true,
             },
-        } : undefined,
+        },
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return 'vendor';
+                    }
+                },
+            },
+        },
+        chunkSizeWarningLimit: 1000,
     },
 }));
