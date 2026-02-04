@@ -1,10 +1,10 @@
-import { ReactNode } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { Language, t as translate } from "@/lib/translations";
-import { LanguageContext } from "@/hooks/LanguageContext";
+import {ReactNode} from "react";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {Language, t as translate} from "@/lib/translations";
+import {LanguageContext} from "@/hooks/LanguageContext";
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-    const { lang: paramLang } = useParams<{ lang: string }>();
+export function LanguageProvider({children}: { children: ReactNode }) {
+    const {lang: paramLang} = useParams<{ lang: string }>();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -23,7 +23,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <LanguageContext.Provider value={{ lang, t, switchLanguage }}>
+        <LanguageContext.Provider value={{lang, t, switchLanguage}}>
             {children}
         </LanguageContext.Provider>
     );

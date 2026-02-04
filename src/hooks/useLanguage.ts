@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { LanguageContext } from "@/hooks/LanguageContext";
+import {useContext} from "react";
+import {LanguageContext} from "@/hooks/LanguageContext";
 
 export function useLanguage() {
     const context = useContext(LanguageContext);
