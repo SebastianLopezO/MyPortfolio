@@ -161,10 +161,11 @@ const TestimonialsSection = () => {
                         size="icon"
                         onClick={prevPage}
                         className="border-border hover:border-primary/50 hover:bg-primary/10"
+                        aria-label="Ver testimonios anteriores"
                     >
                         <ChevronLeft className="h-5 w-5"/>
                     </Button>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2" role="tablist" aria-label="Páginas de testimonios">
                         {Array.from({length: totalPages}).map((_, i) => (
                             <button
                                 key={i}
@@ -172,6 +173,9 @@ const TestimonialsSection = () => {
                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
                                     i === currentPage ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-primary/50"
                                 }`}
+                                aria-label={`Ir a página ${i + 1} de testimonios`}
+                                aria-selected={i === currentPage}
+                                role="tab"
                             />
                         ))}
                     </div>
@@ -180,6 +184,7 @@ const TestimonialsSection = () => {
                         size="icon"
                         onClick={nextPage}
                         className="border-border hover:border-primary/50 hover:bg-primary/10"
+                        aria-label="Ver siguientes testimonios"
                     >
                         <ChevronRight className="h-5 w-5"/>
                     </Button>
