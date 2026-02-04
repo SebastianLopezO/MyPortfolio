@@ -1,6 +1,6 @@
 import {createRoot} from "react-dom/client";
-import App from "./App.tsx";
-import "./index.css";
+import App from "@/App.tsx";
+import "@/index.css";
 
 // Fontsource - Self-hosted fonts for better FCP
 import "@fontsource/ibm-plex-sans/300.css";
