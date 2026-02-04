@@ -1,7 +1,7 @@
 import {Briefcase, ChevronLeft, ChevronRight, GraduationCap, Quote, Users} from "lucide-react";
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 interface Testimonial {
     quote: string;

@@ -16,7 +16,7 @@ import {
     Wrench
 } from "lucide-react";
 import {Button} from "@/components/ui/button";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 type FilterType = "all" | "organizations" | "repositories" | "projects" | "certificates";
 

@@ -1,6 +1,6 @@
 import {ArrowDown, Eye} from "lucide-react";
 import {Button} from "@/components/ui/button";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 import {useTypewriter} from "@/hooks/useTypewriter";
 import profileImage from "@/assets/profile.webp";
 import heroBg from "@/assets/hero-bg.webp";

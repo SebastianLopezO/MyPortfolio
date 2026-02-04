@@ -13,7 +13,7 @@ import {
     Wrench,
     Zap
 } from "lucide-react";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 interface SkillCategory {
     titleEs: string;

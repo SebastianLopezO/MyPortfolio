@@ -1,4 +1,4 @@
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 import {useRoleTypewriter} from "@/hooks/useRoleTypewriter";
 import {BarChart3, Brain, Briefcase, Code2, Layers, Server, Settings, TrendingUp, Users, Zap} from "lucide-react";
 import profileImage from "@/assets/profile-section.webp";

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Menu, X} from "lucide-react";
 import {Button} from "@/components/ui/button";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const Navigation = () => {

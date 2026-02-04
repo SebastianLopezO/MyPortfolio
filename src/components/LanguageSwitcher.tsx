@@ -1,4 +1,4 @@
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 import {Button} from "@/components/ui/button";
 
 const LanguageSwitcher = () => {

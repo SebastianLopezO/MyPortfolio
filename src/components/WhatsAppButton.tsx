@@ -1,5 +1,5 @@
 import {MessageCircle} from "lucide-react";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 const WhatsAppButton = () => {
     const {lang} = useLanguage();

@@ -1,5 +1,5 @@
 import {Briefcase, ChevronDown, ChevronUp, MapPin} from "lucide-react";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 import {useState} from "react";
 
 interface Experience {

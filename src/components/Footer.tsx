@@ -1,5 +1,5 @@
 import {Code, ExternalLink, Github, Linkedin, Mail, Phone} from "lucide-react";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 // Custom icons for services that don't have Lucide equivalents
 const ReplitIcon = ({className}: { className?: string }) => (

@@ -1,5 +1,5 @@
 import {Calendar, Code2, Cpu, Database, GraduationCap} from "lucide-react";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 const asciiArt = `                           \\\\\\\\\\\\\\
                            \\\\\\\\\\\\\\\\\\\\\\\\

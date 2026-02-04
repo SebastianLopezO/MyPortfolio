@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Download, FileText} from "lucide-react";
 import {Button} from "@/components/ui/button";
-import {useLanguage} from "@/hooks/useLanguage";
+import {useLanguage} from "@/hooks/useLanguage.ts";
 
 interface ResumeVersion {
     id: string;
