@@ -19,8 +19,8 @@ import {
     SIDEBAR_WIDTH_MOBILE,
     SidebarContext,
     useSidebar
-} from "./sidebar-context";
-import {sidebarMenuButtonVariants} from "./sidebar-variants";
+} from "@/components/ui/sidebar-context";
+import {sidebarMenuButtonVariants} from "@/components/ui/sidebar-variants";
 import {VariantProps} from "class-variance-authority";
 
 const SidebarProvider = React.forwardRef<
