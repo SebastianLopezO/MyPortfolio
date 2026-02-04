@@ -17,6 +17,7 @@ const Navigation = () => {
         {label: t("nav.experience"), href: "#experience"},
         {label: t("nav.skills"), href: "#skills"},
         {label: t("nav.projects"), href: "#projects"},
+        {label: t("nav.metrics"), href: "#metrics"},
         {label: t("nav.contact"), href: "#contact"},
     ];
 
@@ -40,10 +41,10 @@ const Navigation = () => {
             <div className="container px-4">
                 <div className="flex items-center justify-between h-16 md:h-20">
                     {/* Logo */}
-                    <a href="#home" className="flex items-center gap-2">
+                    <a href="#home" className="flex items-center gap-2" aria-label="Ir al inicio - Sebastián López O">
                         <span className="text-xl md:text-2xl font-display text-primary">SL</span>
                         <span className="hidden sm:inline text-lg font-serif font-bold text-foreground">
-              Sebastián López
+              Sebastián López O
             </span>
                     </a>
 
@@ -71,6 +72,7 @@ const Navigation = () => {
                             size="icon"
                             className="text-foreground"
                             onClick={() => setIsOpen(!isOpen)}
+                            aria-label={isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
                         >
                             {isOpen ? <X className="h-6 w-6"/> : <Menu className="h-6 w-6"/>}
                         </Button>

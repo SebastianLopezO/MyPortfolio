@@ -136,13 +136,26 @@ const ProfileSection = () => {
                         <Briefcase className="h-6 w-6 text-primary"/>
                         <h3 className="text-2xl font-serif font-bold gradient-text">{t("profile.rolesTitle")}</h3>
                     </div>
-                    <div className="h-16 flex items-center justify-center">
+                    <div className="h-16 flex items-center justify-center mb-6">
                         <p className="text-2xl md:text-4xl font-mono font-bold text-primary">
                             {displayText}
                             <span
                                 className={`inline-block w-0.5 h-6 md:h-8 bg-primary ml-1 align-middle ${isPaused ? 'animate-pulse' : 'animate-[blink_0.7s_infinite]'}`}/>
                         </p>
                     </div>
+                    
+                    {/* Complete roles list */}
+                    <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-4">
+                        {roles.map((role, index) => (
+                            <span
+                                key={index}
+                                className="px-3 py-1.5 text-sm font-medium rounded-full bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 transition-colors"
+                            >
+                                {role}
+                            </span>
+                        ))}
+                    </div>
+                    
                     <p className="text-sm text-muted-foreground mt-4 max-w-2xl mx-auto">
                         {t("profile.rolesDescription")}
                     </p>
@@ -188,24 +201,46 @@ const ProfileSection = () => {
                         <p className="text-muted-foreground">{t("profile.benefitsSubtitle")}</p>
                     </div>
 
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                        {benefits.map((benefit, index) => (
-                            <div
-                                key={benefit.title}
-                                className="p-6 rounded-xl bg-muted/30 border border-border hover:border-primary/50 hover:bg-muted/50 transition-all duration-300 glow-hover animate-fade-in-bounce"
-                                style={{animationDelay: `${index * 100}ms`}}
-                            >
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="p-2 rounded-lg bg-primary/10">
-                                        <benefit.icon className="h-5 w-5 text-primary"/>
+                    <div className="max-w-6xl mx-auto">
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {benefits.slice(0, 3).map((benefit, index) => (
+                                <div
+                                    key={benefit.title}
+                                    className="p-6 rounded-xl bg-muted/30 border border-border hover:border-primary/50 hover:bg-muted/50 transition-all duration-300 glow-hover animate-fade-in-bounce"
+                                    style={{animationDelay: `${index * 100}ms`}}
+                                >
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <div className="p-2 rounded-lg bg-primary/10">
+                                            <benefit.icon className="h-5 w-5 text-primary"/>
+                                        </div>
+                                        <h4 className="font-serif font-bold text-foreground text-sm">{benefit.title}</h4>
                                     </div>
-                                    <h4 className="font-serif font-bold text-foreground text-sm">{benefit.title}</h4>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        {benefit.description}
+                                    </p>
                                 </div>
-                                <p className="text-sm text-muted-foreground leading-relaxed">
-                                    {benefit.description}
-                                </p>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                        {/* Last 2 cards centered */}
+                        <div className="flex flex-col sm:flex-row justify-center gap-6 mt-6">
+                            {benefits.slice(3).map((benefit, index) => (
+                                <div
+                                    key={benefit.title}
+                                    className="p-6 rounded-xl bg-muted/30 border border-border hover:border-primary/50 hover:bg-muted/50 transition-all duration-300 glow-hover animate-fade-in-bounce sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)]"
+                                    style={{animationDelay: `${(index + 3) * 100}ms`}}
+                                >
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <div className="p-2 rounded-lg bg-primary/10">
+                                            <benefit.icon className="h-5 w-5 text-primary"/>
+                                        </div>
+                                        <h4 className="font-serif font-bold text-foreground text-sm">{benefit.title}</h4>
+                                    </div>
+                                    <p className="text-sm text-muted-foreground leading-relaxed">
+                                        {benefit.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

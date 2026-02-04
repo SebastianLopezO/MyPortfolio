@@ -64,7 +64,7 @@ const ResumeSection = () => {
                 </div>
 
                 {/* Version Selector */}
-                <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in-bounce">
+                <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in-bounce" role="group" aria-label="Versiones del currículum">
                     {resumeVersions.map((version) => (
                         <Button
                             key={version.id}
@@ -75,6 +75,8 @@ const ResumeSection = () => {
                                     ? "bg-primary text-primary-foreground"
                                     : "border-primary/50 hover:border-primary hover:bg-primary/10"
                             }`}
+                            aria-label={`Ver ${lang === "es" ? version.labelEs : version.labelEn}`}
+                            aria-pressed={selectedVersion === version.id}
                         >
                             {lang === "es" ? version.labelEs : version.labelEn}
                         </Button>
@@ -96,10 +98,11 @@ const ResumeSection = () => {
 
                     {/* Download Button */}
                     <div className="flex justify-center mt-6">
-                        <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+                        <a href={downloadLink} target="_blank" rel="noopener noreferrer" aria-label={`Descargar ${lang === "es" ? currentResume?.labelEs : currentResume?.labelEn} en PDF`}>
                             <Button
                                 size="lg"
                                 className="group bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg glow-hover transition-all duration-300"
+                                aria-label="Descargar currículum"
                             >
                                 <Download className="mr-2 h-5 w-5 group-hover:translate-y-0.5 transition-transform"/>
                                 {t("resume.download")}

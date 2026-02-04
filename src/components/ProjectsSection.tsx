@@ -892,7 +892,7 @@ const ProjectsSection = () => {
                 )}
 
                 {/* GitHub Stats Section */}
-                <div className="mt-20 animate-slide-up">
+                <div id="metrics" className="mt-20 animate-slide-up scroll-mt-24">
                     <h3 className="text-2xl font-serif font-bold mb-8 text-center gradient-text">
                         {t("projects.githubStats")}
                     </h3>

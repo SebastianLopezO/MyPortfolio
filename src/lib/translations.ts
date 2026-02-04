@@ -10,6 +10,7 @@ export const translations = {
         experience: {es: "Experiencia", en: "Experience"},
         skills: {es: "Habilidades", en: "Skills"},
         projects: {es: "Proyectos", en: "Projects"},
+        metrics: {es: "Métricas", en: "Metrics"},
         contact: {es: "Contacto", en: "Contact"},
     },
 
@@ -356,9 +357,9 @@ export const translations = {
             email: {es: "Correo Electrónico", en: "Email"},
             message: {es: "Mensaje", en: "Message"},
             placeholder: {
-                name: {es: "Tu nombre", en: "John Doe"},
-                email: {es: "tu@email.com", en: "john@example.com"},
-                message: {es: "Cuéntame sobre tu proyecto...", en: "Tell me about your project..."},
+                name: {es: "Escribe tu nombre completo", en: "Enter your full name"},
+                email: {es: "Escribe tu correo electrónico", en: "Enter your email address"},
+                message: {es: "Cuéntame sobre tu proyecto o consulta...", en: "Tell me about your project or inquiry..."},
             },
             send: {es: "Enviar Mensaje", en: "Send Message"},
             sending: {es: "Enviando...", en: "Sending..."},
@@ -374,7 +375,7 @@ export const translations = {
 
     // Footer
     footer: {
-        builtWith: {es: "&lt;/construido con pasión&gt;", en: "&lt;/built with passion&gt;"},
+        builtWith: {es: "construido con pasión", en: "built with passion"},
         rights: {es: "Todos los derechos reservados.", en: "All rights reserved."},
     },
 };

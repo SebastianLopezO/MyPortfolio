@@ -66,20 +66,22 @@ const HeroSection = () => {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <a href="#contact" className="inline-block">
+                            <a href="#contact" className="inline-block" aria-label="Ir a la sección de contacto">
                                 <Button
                                     size="lg"
                                     className="group bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg glow-hover transition-all duration-300"
+                                    aria-label="Contactar ahora"
                                 >
                                     {t("hero.ctaCV")}
                                     <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform"/>
                                 </Button>
                             </a>
-                            <a href="#projects" className="inline-block">
+                            <a href="#projects" className="inline-block" aria-label="Ver mis proyectos">
                                 <Button
                                     size="lg"
                                     variant="outline"
                                     className="group border-primary/50 hover:border-primary hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300"
+                                    aria-label="Ver proyectos"
                                 >
                                     <Eye className="mr-2 h-5 w-5"/>
                                     {t("hero.ctaProjects")}
@@ -115,7 +117,7 @@ const HeroSection = () => {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Desplazarse hacia abajo - Sección Sobre mí">
                     <ArrowDown className="h-6 w-6"/>
                 </a>
             </div>

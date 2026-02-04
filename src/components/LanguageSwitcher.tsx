@@ -5,7 +5,7 @@ const LanguageSwitcher = () => {
     const {lang, switchLanguage} = useLanguage();
 
     return (
-        <div className="flex items-center gap-1 bg-muted/50 rounded-full p-1">
+        <div className="flex items-center gap-1 bg-muted/50 rounded-full p-1" role="group" aria-label="Selector de idioma">
             <Button
                 variant={lang === "es" ? "default" : "ghost"}
                 size="sm"
@@ -15,6 +15,8 @@ const LanguageSwitcher = () => {
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:text-foreground"
                 }`}
+                aria-label="Cambiar idioma a Español"
+                aria-pressed={lang === "es"}
             >
                 ES
             </Button>
@@ -27,6 +29,8 @@ const LanguageSwitcher = () => {
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:text-foreground"
                 }`}
+                aria-label="Change language to English"
+                aria-pressed={lang === "en"}
             >
                 EN
             </Button>

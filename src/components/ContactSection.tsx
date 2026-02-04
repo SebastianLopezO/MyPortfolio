@@ -75,6 +75,7 @@ const ContactSection = () => {
                             <a
                                 href="tel:+573002329213"
                                 className="flex items-center gap-4 group hover:translate-x-1 transition-transform"
+                                aria-label="Llamar al teléfono +57 300 232 9213"
                             >
                                 <div
                                     className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
@@ -89,6 +90,7 @@ const ContactSection = () => {
                             <a
                                 href="mailto:sebastianlopezosorno2005@gmail.com"
                                 className="flex items-center gap-4 group hover:translate-x-1 transition-transform"
+                                aria-label="Enviar correo a sebastianlopezosorno2005@gmail.com"
                             >
                                 <div
                                     className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
@@ -107,6 +109,7 @@ const ContactSection = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-4 group hover:translate-x-1 transition-transform"
+                                aria-label="Visitar perfil de LinkedIn de Sebastián López"
                             >
                                 <div
                                     className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary/20 transition-colors">
@@ -186,6 +189,7 @@ const ContactSection = () => {
                             type="submit"
                             disabled={isSubmitting}
                             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 glow-hover transition-all duration-300"
+                            aria-label={isSubmitting ? "Enviando mensaje" : "Enviar mensaje de contacto"}
                         >
                             {isSubmitting ? (
                                 <>
