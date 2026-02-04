@@ -383,20 +383,31 @@ export const translations = {
     },
 };
 
+interface TranslationNode {
+    [key: string]: string | TranslationNode;
+}
+
 export function t(
     key: string,
     lang: Language
 ): string {
     const keys = key.split(".");
-    let value: any = translations;
+    let value: TranslationNode | string | undefined = translations as unknown as TranslationNode;
 
     for (const k of keys) {
-        value = value?.[k];
+        if (value && typeof value === "object") {
+            value = value[k];
+        } else {
+            value = undefined;
+            break;
+        }
     }
 
     if (value && typeof value === "object" && lang in value) {
-        return value[lang];
+        return (value as Record<Language, string>)[lang];
     }
+
+    if (typeof value === "string") return value;
 
     return key;
 }
