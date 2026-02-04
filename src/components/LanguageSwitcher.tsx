@@ -5,7 +5,8 @@ const LanguageSwitcher = () => {
     const {lang, switchLanguage} = useLanguage();
 
     return (
-        <div className="flex items-center gap-1 bg-muted/50 rounded-full p-1" role="group" aria-label="Selector de idioma">
+        <div className="flex items-center gap-1 bg-muted/50 rounded-full p-1" role="group"
+             aria-label="Selector de idioma">
             <Button
                 variant={lang === "es" ? "default" : "ghost"}
                 size="sm"

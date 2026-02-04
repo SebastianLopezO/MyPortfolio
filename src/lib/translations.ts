@@ -359,7 +359,10 @@ export const translations = {
             placeholder: {
                 name: {es: "Escribe tu nombre completo", en: "Enter your full name"},
                 email: {es: "Escribe tu correo electrónico", en: "Enter your email address"},
-                message: {es: "Cuéntame sobre tu proyecto o consulta...", en: "Tell me about your project or inquiry..."},
+                message: {
+                    es: "Cuéntame sobre tu proyecto o consulta...",
+                    en: "Tell me about your project or inquiry..."
+                },
             },
             send: {es: "Enviar Mensaje", en: "Send Message"},
             sending: {es: "Enviando...", en: "Sending..."},

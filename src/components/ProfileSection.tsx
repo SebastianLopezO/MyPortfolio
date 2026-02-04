@@ -143,7 +143,7 @@ const ProfileSection = () => {
                                 className={`inline-block w-0.5 h-6 md:h-8 bg-primary ml-1 align-middle ${isPaused ? 'animate-pulse' : 'animate-[blink_0.7s_infinite]'}`}/>
                         </p>
                     </div>
-                    
+
                     {/* Complete roles list */}
                     <div className="flex flex-wrap justify-center gap-2 max-w-3xl mx-auto mb-4">
                         {roles.map((role, index) => (
@@ -155,7 +155,7 @@ const ProfileSection = () => {
                             </span>
                         ))}
                     </div>
-                    
+
                     <p className="text-sm text-muted-foreground mt-4 max-w-2xl mx-auto">
                         {t("profile.rolesDescription")}
                     </p>

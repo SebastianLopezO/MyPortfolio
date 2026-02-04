@@ -118,7 +118,8 @@ const HeroSection = () => {
 
             {/* Scroll indicator */}
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
-                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Desplazarse hacia abajo - Sección Sobre mí">
+                <a href="#about" className="text-muted-foreground hover:text-primary transition-colors"
+                   aria-label="Desplazarse hacia abajo - Sección Sobre mí">
                     <ArrowDown className="h-6 w-6"/>
                 </a>
             </div>
