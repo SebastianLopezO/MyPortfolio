@@ -136,104 +136,95 @@ const ExperienceSection = () => {
     };
 
     return (
-        <section id="experience" className="py-20 md:py-32">
+        <section id="experience" className="py-20 md:py-32 bg-background">
             <div className="container px-4">
                 <div className="text-center mb-16 animate-slide-up">
                     <h2 className="section-title">{t("experience.title")}</h2>
-                    <p className="section-subtitle">{t("experience.subtitle")}</p>
+                    <p className="section-subtitle text-foreground/80">{t("experience.subtitle")}</p>
                 </div>
 
                 <div className="relative max-w-4xl mx-auto">
                     {/* Timeline line */}
                     <div
-                        className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-accent transform md:-translate-x-1/2"/>
+                        className="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-border transform md:-translate-x-1/2 opacity-50"/>
 
                     {experiences.map((exp, index) => (
                         <div
                             key={`${exp.company}-${index}`}
-                            className={`relative flex flex-col md:flex-row gap-8 mb-12 animate-fade-in-bounce`}
+                            className="relative flex flex-col md:flex-row gap-8 mb-12 animate-fade-in-bounce"
                             style={{animationDelay: `${index * 150}ms`}}
                         >
                             {/* Timeline dot */}
                             <div
                                 className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background transform md:-translate-x-1/2 z-10">
                                 {exp.current && (
-                                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-50"/>
+                                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-40"/>
                                 )}
                             </div>
 
-                            {/* Content */}
                             <div
-                                className={`ml-8 md:ml-0 md:w-1/2 ${
-                                    index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12 md:ml-auto"
-                                }`}
-                            >
+                                className={`ml-8 md:ml-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12 md:ml-auto"}`}>
                                 <div
-                                    className="p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-all duration-300 glow-hover group">
-                                    {/* Header */}
-                                    <div className="flex items-center gap-2 mb-2 flex-wrap">
+                                    className="p-6 rounded-lg bg-card border border-border shadow-sm hover:border-primary/50 transition-all duration-300 group">
+
+                                    {/* Header - Ajuste de Contraste en Fecha */}
+                                    <div
+                                        className={`flex items-center gap-2 mb-2 flex-wrap ${index % 2 === 0 ? "md:justify-end" : ""}`}>
                                         <Briefcase className="h-5 w-5 text-primary"/>
-                                        <span className="text-primary font-mono text-sm">{exp.period}</span>
+                                        <span className="text-foreground font-semibold text-sm">{exp.period}</span>
                                         {exp.current && (
                                             <span
-                                                className="px-2 py-0.5 text-xs font-semibold bg-primary/20 text-primary rounded-full">
-                        {t("experience.current")}
-                      </span>
+                                                className="px-2 py-0.5 text-xs font-bold bg-primary text-primary-foreground rounded-full">
+                                                {t("experience.current")}
+                                            </span>
                                         )}
                                     </div>
 
-                                    <h3 className="text-xl font-serif font-bold text-foreground mb-1">
-                                        {exp.company}
-                                    </h3>
-                                    <p className="text-secondary font-medium mb-2">
+                                    <h3 className="text-xl font-bold text-foreground mb-1">{exp.company}</h3>
+
+                                    {/* SOLUCIÓN CONTRASTE: Cambiado de text-secondary a text-primary (o un color más oscuro) */}
+                                    <p className="text-primary font-bold mb-2">
                                         {lang === "es" ? exp.roleEs : exp.role}
                                     </p>
 
                                     {/* Location & Work Type */}
                                     <div
-                                        className={`flex items-center gap-2 text-xs text-muted-foreground mb-3 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
-                                        <MapPin className="h-3 w-3"/>
+                                        className={`flex items-center gap-2 text-sm text-foreground/70 mb-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                                        <MapPin className="h-4 w-4 text-primary"/>
                                         <span>{exp.location}</span>
-                                        <span>·</span>
+                                        <span className="opacity-50">·</span>
                                         <span>{lang === "es" ? exp.workTypeEs : exp.workType}</span>
                                     </div>
 
-                                    {/* Short Description */}
-                                    <p className="text-muted-foreground text-sm mb-4">
+                                    <p className="text-foreground/90 text-sm mb-4 leading-relaxed">
                                         {lang === "es" ? exp.descriptionEs : exp.description}
                                     </p>
 
                                     {/* Expandable Details */}
                                     <button
                                         onClick={() => toggleExpand(index)}
-                                        className={`flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors mb-3 ${index % 2 === 0 ? "md:ml-auto" : ""}`}
+                                        className={`flex items-center gap-2 py-2 text-sm font-bold text-primary hover:underline transition-all ${index % 2 === 0 ? "md:ml-auto" : ""}`}
+                                        aria-expanded={expandedIndex === index}
                                     >
                                         {expandedIndex === index ? (
-                                            <>
-                                                {lang === "es" ? "Ver menos" : "Show less"}
-                                                <ChevronUp className="h-4 w-4"/>
-                                            </>
+                                            <>{lang === "es" ? "Ver menos" : "Show less"} <ChevronUp
+                                                className="h-5 w-5"/></>
                                         ) : (
-                                            <>
-                                                {lang === "es" ? "Ver más" : "Show more"}
-                                                <ChevronDown className="h-4 w-4"/>
-                                            </>
+                                            <>{lang === "es" ? "Ver más" : "Show more"} <ChevronDown
+                                                className="h-5 w-5"/></>
                                         )}
                                     </button>
 
-                                    {/* Expanded Content */}
                                     {expandedIndex === index && (
-                                        <div className="animate-fade-in-bounce border-t border-border pt-4 mb-4">
-                                            <h4 className={`text-sm font-semibold text-foreground mb-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
-                                                {lang === "es" ? "Responsabilidades clave:" : "Key Responsibilities:"}
-                                            </h4>
-                                            <ul className={`space-y-2 ${index % 2 === 0 ? "md:text-right" : ""}`}>
+                                        <div
+                                            className="animate-in fade-in slide-in-from-top-2 duration-300 border-t border-border mt-4 pt-4">
+                                            <ul className={`space-y-3 ${index % 2 === 0 ? "md:text-right" : ""}`}>
                                                 {(lang === "es" ? exp.highlightsEs : exp.highlights).map((highlight, hIndex) => (
                                                     <li key={hIndex}
-                                                        className="text-sm text-muted-foreground flex items-start gap-2">
+                                                        className="text-sm text-foreground/80 flex items-start gap-3">
                                                         <span
-                                                            className={`text-primary mt-1.5 flex-shrink-0 ${index % 2 === 0 ? "md:order-2" : ""}`}>•</span>
-                                                        <span>{highlight}</span>
+                                                            className={`text-primary font-bold ${index % 2 === 0 ? "md:order-2" : ""}`}>•</span>
+                                                        <span className="flex-1">{highlight}</span>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -241,17 +232,14 @@ const ExperienceSection = () => {
                                     )}
 
                                     {/* Technologies */}
-                                    <div className={`flex flex-wrap gap-2 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
+                                    <div
+                                        className={`flex flex-wrap gap-2 mt-4 ${index % 2 === 0 ? "md:justify-end" : ""}`}>
                                         {exp.technologies.slice(0, expandedIndex === index ? exp.technologies.length : 5).map((tech) => (
-                                            <span key={tech} className="tech-badge text-xs">
-                        {tech}
-                      </span>
+                                            <span key={tech}
+                                                  className="bg-muted text-foreground font-medium px-2.5 py-1 rounded-md text-xs border border-border">
+                                                {tech}
+                                            </span>
                                         ))}
-                                        {expandedIndex !== index && exp.technologies.length > 5 && (
-                                            <span className="text-xs text-muted-foreground">
-                        +{exp.technologies.length - 5}
-                      </span>
-                                        )}
                                     </div>
                                 </div>
                             </div>
