@@ -75,7 +75,8 @@ const HeroSection = () => {
                                 size="lg"
                                 className="group bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg glow-hover transition-all duration-300"
                             >
-                                <a href="#contact" aria-label={lang === "es" ? "Ir a la sección de contacto" : "Go to contact section"}>
+                                <a href="#contact"
+                                   aria-label={lang === "es" ? "Ir a la sección de contacto" : "Go to contact section"}>
                                     {t("hero.ctaCV")}
                                     <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform"/>
                                 </a>
@@ -86,7 +87,8 @@ const HeroSection = () => {
                                 variant="outline"
                                 className="group border-primary/50 hover:border-primary hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300"
                             >
-                                <a href="#projects" aria-label={lang === "es" ? "Ver mis proyectos" : "View my projects"}>
+                                <a href="#projects"
+                                   aria-label={lang === "es" ? "Ver mis proyectos" : "View my projects"}>
                                     <Eye className="mr-2 h-5 w-5"/>
                                     {t("hero.ctaProjects")}
                                 </a>

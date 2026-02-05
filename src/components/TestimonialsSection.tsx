@@ -177,7 +177,8 @@ const TestimonialsSection = () => {
                                 aria-selected={i === currentPage}
                                 role="tab"
                             >
-                                <span className={`w-2 h-2 rounded-full ${i === currentPage ? "bg-primary-foreground" : "bg-current"}`} />
+                                <span
+                                    className={`w-2 h-2 rounded-full ${i === currentPage ? "bg-primary-foreground" : "bg-current"}`}/>
                             </button>
                         ))}
                     </div>

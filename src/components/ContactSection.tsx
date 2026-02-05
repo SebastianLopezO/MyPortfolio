@@ -20,24 +20,24 @@ const ContactSection = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        const header = lang === "es" 
+
+        const header = lang === "es"
             ? "📬 Nuevo mensaje desde el portafolio web"
             : "📬 New message from web portfolio";
-        
+
         const nameLabel = lang === "es" ? "Nombre" : "Name";
         const emailLabel = lang === "es" ? "Correo" : "Email";
         const messageLabel = lang === "es" ? "Mensaje" : "Message";
-        
+
         const whatsappMessage = `${header}
 
 *${nameLabel}:* ${formData.name}
 *${emailLabel}:* ${formData.email}
 *${messageLabel}:* ${formData.message}`;
-        
+
         const encodedMessage = encodeURIComponent(whatsappMessage);
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-        
+
         window.open(whatsappUrl, "_blank");
 
         setFormData({name: "", email: "", message: ""});

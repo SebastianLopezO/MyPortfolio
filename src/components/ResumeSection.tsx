@@ -102,7 +102,8 @@ const ResumeSection = () => {
                         className="block"
                         aria-label={`${t("resume.viewFull")} - ${lang === "es" ? currentResume?.labelEs : currentResume?.labelEn}`}
                     >
-                        <div className="relative rounded-lg overflow-hidden border border-border bg-background glow-hover cursor-pointer group">
+                        <div
+                            className="relative rounded-lg overflow-hidden border border-border bg-background glow-hover cursor-pointer group">
                             <div className="flex flex-col gap-4">
                                 {images?.map((img, index) => (
                                     <div key={index} className="relative">
@@ -118,8 +119,10 @@ const ResumeSection = () => {
                                             sizes="(max-width: 896px) 100vw, 816px"
                                         />
                                         {/* Hover overlay */}
-                                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                            <span className="bg-background/90 text-foreground px-4 py-2 rounded-lg font-medium shadow-lg">
+                                        <div
+                                            className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                            <span
+                                                className="bg-background/90 text-foreground px-4 py-2 rounded-lg font-medium shadow-lg">
                                                 {t("resume.clickToView")}
                                             </span>
                                         </div>
