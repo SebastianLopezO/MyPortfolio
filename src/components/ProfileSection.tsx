@@ -1,6 +1,7 @@
 import {useLanguage} from "@/hooks/useLanguage.ts";
 import {useRoleTypewriter} from "@/hooks/useRoleTypewriter";
 import {BarChart3, Brain, Briefcase, Code2, Layers, Server, Settings, TrendingUp, Users, Zap} from "lucide-react";
+import profileImage from "@/assets/profile-section.webp";
 
 const ProfileSection = () => {
     const {t, lang} = useLanguage();
@@ -103,7 +104,7 @@ const ProfileSection = () => {
                                 <div className="relative">
                                     <div className="absolute inset-0 rounded-full bg-primary/30 blur-xl scale-110"/>
                                     <img
-                                        src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/refs/heads/main/images/profile-section.webp"
+                                        src={profileImage}
                                         alt="Sebastián López Osorno"
                                         className="relative w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-primary/50 shadow-xl"
                                     />
