@@ -2,8 +2,6 @@ import {ArrowDown, Eye} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {useLanguage} from "@/hooks/useLanguage.ts";
 import {useTypewriter} from "@/hooks/useTypewriter";
-import profileImage from "@/assets/profile.webp";
-import heroBg from "@/assets/hero-bg.webp";
 
 const HeroSection = () => {
     const {t, lang} = useLanguage();
@@ -19,7 +17,7 @@ const HeroSection = () => {
             <div
                 className="absolute inset-0 z-0"
                 style={{
-                    backgroundImage: `url(${heroBg})`,
+                    backgroundImage: `url(https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/refs/heads/main/images/hero-bg.webp)`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
@@ -100,7 +98,7 @@ const HeroSection = () => {
                             <div
                                 className="relative w-64 h-72 md:w-80 md:h-96 hex-card overflow-hidden border-4 border-primary/50 animate-pulse-glow">
                                 <img
-                                    src={profileImage}
+                                    src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/refs/heads/main/images/profile.webp"
                                     alt="Sebastián López Osorno"
                                     className="w-full h-full object-cover object-top"
                                     fetchPriority="high"
