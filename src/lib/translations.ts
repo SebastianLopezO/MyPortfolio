@@ -177,6 +177,9 @@ export const translations = {
             en: "Explore my professional experience in detail",
         },
         download: {es: "Descargar PDF", en: "Download PDF"},
+        page: {es: "Página", en: "Page"},
+        clickToView: {es: "Clic para ver completo", en: "Click to view full"},
+        viewFull: {es: "Ver documento completo", en: "View full document"},
     },
 
     // About Section
