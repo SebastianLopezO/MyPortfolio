@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {CheckCircle, Mail, MapPin, Phone, Send} from "lucide-react";
+import {Mail, MapPin, Phone, Send} from "lucide-react";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
 import {Textarea} from "@/components/ui/textarea";
@@ -14,22 +14,33 @@ const ContactSection = () => {
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
     const {toast} = useToast();
-    const {t} = useLanguage();
+    const {t, lang} = useLanguage();
+
+    const phoneNumber = "573002329213";
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setIsSubmitting(true);
+        
+        const header = lang === "es" 
+            ? "📬 Nuevo mensaje desde el portafolio web"
+            : "📬 New message from web portfolio";
+        
+        const nameLabel = lang === "es" ? "Nombre" : "Name";
+        const emailLabel = lang === "es" ? "Correo" : "Email";
+        const messageLabel = lang === "es" ? "Mensaje" : "Message";
+        
+        const whatsappMessage = `${header}
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        toast({
-            title: t("contact.toast.title"),
-            description: t("contact.toast.description"),
-        });
+*${nameLabel}:* ${formData.name}
+*${emailLabel}:* ${formData.email}
+*${messageLabel}:* ${formData.message}`;
+        
+        const encodedMessage = encodeURIComponent(whatsappMessage);
+        const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+        
+        window.open(whatsappUrl, "_blank");
 
         setFormData({name: "", email: "", message: ""});
-        setIsSubmitting(false);
     };
 
     const handleChange = (
@@ -187,21 +198,11 @@ const ContactSection = () => {
 
                         <Button
                             type="submit"
-                            disabled={isSubmitting}
                             className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 glow-hover transition-all duration-300"
-                            aria-label={isSubmitting ? "Enviando mensaje" : "Enviar mensaje de contacto"}
+                            aria-label={t("contact.form.send")}
                         >
-                            {isSubmitting ? (
-                                <>
-                                    <CheckCircle className="mr-2 h-5 w-5 animate-pulse"/>
-                                    {t("contact.form.sending")}
-                                </>
-                            ) : (
-                                <>
-                                    <Send className="mr-2 h-5 w-5"/>
-                                    {t("contact.form.send")}
-                                </>
-                            )}
+                            <Send className="mr-2 h-5 w-5"/>
+                            {t("contact.form.send")}
                         </Button>
                     </form>
                 </div>
