@@ -170,13 +170,15 @@ const TestimonialsSection = () => {
                             <button
                                 key={i}
                                 onClick={() => setCurrentPage(i)}
-                                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                    i === currentPage ? "bg-primary w-6" : "bg-muted-foreground/30 hover:bg-primary/50"
+                                className={`min-w-6 min-h-6 rounded-full transition-all duration-300 flex items-center justify-center ${
+                                    i === currentPage ? "bg-primary w-8" : "bg-muted-foreground/30 hover:bg-primary/50"
                                 }`}
                                 aria-label={`Ir a página ${i + 1} de testimonios`}
                                 aria-selected={i === currentPage}
                                 role="tab"
-                            />
+                            >
+                                <span className={`w-2 h-2 rounded-full ${i === currentPage ? "bg-primary-foreground" : "bg-current"}`} />
+                            </button>
                         ))}
                     </div>
                     <Button

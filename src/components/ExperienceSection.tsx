@@ -185,7 +185,7 @@ const ExperienceSection = () => {
                                     <h3 className="text-xl font-serif font-bold text-foreground mb-1">
                                         {exp.company}
                                     </h3>
-                                    <p className="text-secondary font-medium mb-2">
+                                    <p className="text-primary font-medium mb-2">
                                         {lang === "es" ? exp.roleEs : exp.role}
                                     </p>
 
