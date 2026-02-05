@@ -107,7 +107,12 @@ const HeroSection = () => {
                                     src={profileImage}
                                     alt="Sebastián López Osorno"
                                     className="w-full h-full object-cover object-top"
+                                    width="320"
+                                    height="384"
                                     fetchPriority="high"
+                                    loading="eager"
+                                    decoding="async"
+                                    srcSet={`${profileImage} 1x, ${profileImage} 2x`}
                                 />
                             </div>
 

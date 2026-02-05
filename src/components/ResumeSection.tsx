@@ -112,7 +112,10 @@ const ResumeSection = () => {
                                             className="w-full h-auto transition-transform duration-300 group-hover:scale-[1.01]"
                                             width="816"
                                             height="1056"
-                                            loading={index === 0 ? "eager" : "lazy"}
+                                            loading="lazy"
+                                            decoding="async"
+                                            srcSet={`${img} 816w, ${img} 1632w`}
+                                            sizes="(max-width: 896px) 100vw, 816px"
                                         />
                                         {/* Hover overlay */}
                                         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
