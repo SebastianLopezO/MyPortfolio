@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font-display swap for faster text rendering */
+@font-face {
+    font-family: 'IBM Plex Sans';
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'DM Serif Text';
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Source Code Pro';
+    font-display: swap;
+}
+
 @layer base {
     :root {
         /* Deep Black Background */
