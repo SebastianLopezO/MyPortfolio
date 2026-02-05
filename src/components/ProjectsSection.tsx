@@ -561,7 +561,9 @@ const ProjectsSection = () => {
                                             <img
                                                 src={org.metricsUrl}
                                                 alt={`${org.name} metrics`}
-                                                className="w-full"
+                                                width="468"
+                                                height="137"
+                                                className="w-full h-auto"
                                                 loading="lazy"
                                             />
                                         </div>
@@ -902,19 +904,25 @@ const ProjectsSection = () => {
                         <img
                             src="https://komarev.com/ghpvc/?username=SebastianLopezO&label=Profile%20views&color=0e75b6&style=flat"
                             alt="Profile Views"
-                            className="h-5"
+                            width="140"
+                            height="20"
+                            className="h-5 w-auto"
                             loading="lazy"
                         />
                         <img
                             src="https://img.shields.io/github/stars/SebastianLopezO?style=flat&logo=github"
                             alt="GitHub Stars"
-                            className="h-5"
+                            width="80"
+                            height="20"
+                            className="h-5 w-auto"
                             loading="lazy"
                         />
                         <img
                             src="https://img.shields.io/github/followers/SebastianLopezO?style=flat&logo=github&label=Followers"
                             alt="Followers Count"
-                            className="h-5"
+                            width="100"
+                            height="20"
+                            className="h-5 w-auto"
                             loading="lazy"
                         />
                     </div>
@@ -924,13 +932,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.github-metrics.svg"
                             alt="GitHub Metrics"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.activity.svg"
                             alt="Activity Metrics"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                     </div>
@@ -940,13 +952,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.isocalendar.svg"
                             alt="Isometric Calendar"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.calendar.svg"
                             alt="Calendar"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                     </div>
@@ -956,13 +972,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.followup.svg"
                             alt="Follow Up"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.people.svg"
                             alt="People"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                     </div>
@@ -972,13 +992,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.stargazers.svg"
                             alt="Stargazers"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.starlists.languages.svg"
                             alt="Star Lists Languages"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                     </div>
@@ -988,13 +1012,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.topics.icons.svg"
                             alt="Topics Icons"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.topics.labels.svg"
                             alt="Topics Labels"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                     </div>
@@ -1004,13 +1032,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.languages.details.svg"
                             alt="Languages Details"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/main/metrics/account/metrics.habits.charts.svg"
                             alt="Coding Habits"
-                            className="w-full rounded-lg border border-border"
+                            width="468"
+                            height="300"
+                            className="w-full h-auto rounded-lg border border-border"
                             loading="lazy"
                         />
                     </div>
@@ -1020,13 +1052,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://github-readme-stats-one-liart-24.vercel.app/api/wakatime?username=SebastianLopezO&layout=compact&theme=dark"
                             alt="WakaTime Stats"
-                            className="rounded-lg border border-border max-w-full h-auto"
+                            width="495"
+                            height="200"
+                            className="rounded-lg border border-border max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                         <img
                             src="https://github-readme-stats-one-liart-24.vercel.app/api/top-langs/?username=SebastianLopezO&layout=donut-vertical&hide=HTML,Procfile,Papyrus&langs_count=20&theme=dark"
                             alt="Top Languages"
-                            className="rounded-lg border border-border max-w-full h-auto"
+                            width="300"
+                            height="400"
+                            className="rounded-lg border border-border max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                     </div>
@@ -1036,13 +1072,17 @@ const ProjectsSection = () => {
                         <img
                             src="https://github-readme-streak-stats-steel-theta.vercel.app/?user=SebastianLopezO&theme=dark&hide_border=false&border_radius=10"
                             alt="GitHub Streak"
-                            className="rounded-lg border border-border max-w-full h-auto"
+                            width="495"
+                            height="195"
+                            className="rounded-lg border border-border max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                         <img
                             src="https://github-readme-stats-one-liart-24.vercel.app/api?username=SebastianLopezO&show_icons=true&theme=dark"
                             alt="GitHub Stats"
-                            className="rounded-lg border border-border max-w-full h-auto"
+                            width="495"
+                            height="195"
+                            className="rounded-lg border border-border max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                     </div>
@@ -1052,7 +1092,9 @@ const ProjectsSection = () => {
                         <img
                             src="https://github-readme-activity-graph.vercel.app/graph?username=SebastianLopezO&theme=high-contrast&area=true&hide_border=true&days=50"
                             alt={t("projects.activity")}
-                            className="rounded-lg border border-border max-w-full h-auto"
+                            width="900"
+                            height="300"
+                            className="rounded-lg border border-border max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                     </div>
@@ -1062,7 +1104,9 @@ const ProjectsSection = () => {
                         <img
                             src="https://github-profile-trophy-hkpvrw0xd-sebastianlopezo-projects.vercel.app/?username=SebastianLopezO&theme=onedark&row=2&column=9"
                             alt="GitHub Trophies"
-                            className="max-w-full h-auto"
+                            width="900"
+                            height="150"
+                            className="max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                     </div>
@@ -1072,7 +1116,9 @@ const ProjectsSection = () => {
                         <img
                             src="https://raw.githubusercontent.com/SebastianLopezO/SebastianLopezO/output/snake.svg"
                             alt="Snake Animation"
-                            className="max-w-full h-auto"
+                            width="850"
+                            height="200"
+                            className="max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                     </div>
@@ -1082,7 +1128,9 @@ const ProjectsSection = () => {
                         <img
                             src="https://github-contributor-stats.vercel.app/api?username=SebastianLopezO&theme=dark&hide_contributor_rank=false"
                             alt="GitHub Contributor Stats"
-                            className="rounded-lg border border-border max-w-full h-auto"
+                            width="495"
+                            height="200"
+                            className="rounded-lg border border-border max-w-full h-auto w-auto"
                             loading="lazy"
                         />
                     </div>

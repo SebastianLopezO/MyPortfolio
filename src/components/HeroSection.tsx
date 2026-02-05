@@ -37,12 +37,16 @@ const HeroSection = () => {
                             <img
                                 src="https://komarev.com/ghpvc/?username=SebastianLopezO&label=Profile%20Views&color=36BFB1&style=flat"
                                 alt="Profile Views"
-                                className="h-5"
+                                width="140"
+                                height="20"
+                                className="h-5 w-auto"
                             />
                             <img
                                 src="https://img.shields.io/github/followers/SebastianLopezO?label=Followers&style=social"
                                 alt="GitHub Followers"
-                                className="h-5"
+                                width="100"
+                                height="20"
+                                className="h-5 w-auto"
                             />
                         </div>
 
@@ -66,27 +70,27 @@ const HeroSection = () => {
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <a href="#contact" className="inline-block" aria-label="Ir a la sección de contacto">
-                                <Button
-                                    size="lg"
-                                    className="group bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg glow-hover transition-all duration-300"
-                                    aria-label="Contactar ahora"
-                                >
+                            <Button
+                                asChild
+                                size="lg"
+                                className="group bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-lg glow-hover transition-all duration-300"
+                            >
+                                <a href="#contact" aria-label={lang === "es" ? "Ir a la sección de contacto" : "Go to contact section"}>
                                     {t("hero.ctaCV")}
                                     <ArrowDown className="ml-2 h-5 w-5 group-hover:translate-y-1 transition-transform"/>
-                                </Button>
-                            </a>
-                            <a href="#projects" className="inline-block" aria-label="Ver mis proyectos">
-                                <Button
-                                    size="lg"
-                                    variant="outline"
-                                    className="group border-primary/50 hover:border-primary hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300"
-                                    aria-label="Ver proyectos"
-                                >
+                                </a>
+                            </Button>
+                            <Button
+                                asChild
+                                size="lg"
+                                variant="outline"
+                                className="group border-primary/50 hover:border-primary hover:bg-primary/10 text-foreground font-semibold px-8 py-6 text-lg rounded-lg transition-all duration-300"
+                            >
+                                <a href="#projects" aria-label={lang === "es" ? "Ver mis proyectos" : "View my projects"}>
                                     <Eye className="mr-2 h-5 w-5"/>
                                     {t("hero.ctaProjects")}
-                                </Button>
-                            </a>
+                                </a>
+                            </Button>
                         </div>
                     </div>
 
