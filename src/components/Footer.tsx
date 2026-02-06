@@ -32,45 +32,60 @@ const socialLinks = [
 
 const additionalLinks = [
     {
-        name: "Stack Overflow",
-        href: "https://stackoverflow.com/users/20429376/sebasti%c3%a1n-l%c3%b3pez-osorno",
-        color: "bg-orange-500/10 text-orange-400"
+        name: "CodePen",
+        href: "https://codepen.io/sebastianlopezo",
+        color: "bg-black/20 text-white hover:bg-black/40 border-gray-700"
+    },
+    {
+        name: "Dev.to",
+        href: "https://dev.to/sebastianlopezo",
+        color: "bg-zinc-900/20 text-zinc-100 hover:bg-zinc-900/40 border-zinc-700"
     },
     {
         name: "LinkedIn",
         href: "https://www.linkedin.com/in/sebastianlopezosorno/",
-        color: "bg-blue-600/10 text-blue-400"
+        color: "bg-blue-600/10 text-blue-500 hover:bg-blue-600/20"
+    },
+    {
+        name: "Stack Overflow",
+        href: "https://stackoverflow.com/users/20429376/sebasti%c3%a1n-l%c3%b3pez-osorno",
+        color: "bg-orange-500/10 text-orange-500 hover:bg-orange-500/20"
     },
     {
         name: "HackerRank",
         href: "https://www.hackerrank.com/profile/sebastianlopezo1",
-        color: "bg-emerald-500/10 text-emerald-400"
+        color: "bg-emerald-500/10 text-emerald-500 hover:bg-emerald-500/20"
     },
     {
         name: "FreeCodeCamp",
         href: "https://www.freecodecamp.org/sebastianlopezo",
-        color: "bg-green-500/10 text-green-400"
-    },
-    {
-        name: "Docker Hub",
-        href: "https://hub.docker.com/u/sebastian190030",
-        color: "bg-blue-500/10 text-blue-400"
-    },
-    {
-        name: "WakaTime",
-        href: "https://wakatime.com/@SebastianLopezO",
-        color: "bg-purple-500/10 text-purple-400"
-    },
-    {
-        name: "Platzi",
-        href: "https://platzi.com/p/SebastianLopezO/",
-        color: "bg-green-600/10 text-green-400"
+        color: "bg-indigo-950/20 text-indigo-400 hover:bg-indigo-950/40"
     },
     {
         name: "Replit",
         href: "https://replit.com/@sebastianlopezo",
-        color: "bg-gray-500/10 text-gray-400"
+        color: "bg-slate-500/10 text-slate-400 hover:bg-slate-500/20"
     },
+    {
+        name: "Docker Hub",
+        href: "https://hub.docker.com/u/sebastian190030",
+        color: "bg-blue-500/10 text-blue-400 hover:bg-blue-500/20"
+    },
+    {
+        name: "WakaTime",
+        href: "https://wakatime.com/@SebastianLopezO",
+        color: "bg-zinc-900/10 text-zinc-300 hover:bg-zinc-900/20"
+    },
+    {
+        name: "GitLab",
+        href: "https://gitlab.com/sebastianlopezo",
+        color: "bg-orange-600/10 text-orange-600 hover:bg-orange-600/20"
+    },
+    {
+        name: "Platzi",
+        href: "https://platzi.com/p/SebastianLopezO/",
+        color: "bg-lime-500/10 text-lime-500 hover:bg-lime-500/20"
+    }
 ];
 
 const Footer = () => {
