@@ -17,17 +17,38 @@ const HackerRankIcon = ({className}: { className?: string }) => (
 );
 
 const socialLinks = [
-    {icon: Github, href: "https://github.com/SebastianLopezO", label: "GitHub"},
-    {icon: Linkedin, href: "https://www.linkedin.com/in/sebastianlopezosorno/", label: "LinkedIn"},
-    {icon: ReplitIcon, href: "https://replit.com/@sebastianlopezo", label: "Replit", isCustom: true},
+    {
+        icon: Github,
+        href: "https://github.com/SebastianLopezO",
+        label: "GitHub"
+    },
+    {
+        icon: Linkedin,
+        href: "https://www.linkedin.com/in/sebastianlopezosorno/",
+        label: "LinkedIn"
+    },
+    {
+        icon: ReplitIcon,
+        href: "https://replit.com/@sebastianlopezo",
+        label: "Replit",
+        isCustom: true
+    },
     {
         icon: HackerRankIcon,
         href: "https://www.hackerrank.com/profile/sebastianlopezo1",
         label: "HackerRank",
         isCustom: true
     },
-    {icon: Phone, href: "tel:+573002329213", label: "Phone"},
-    {icon: Mail, href: "mailto:sebastianlopezosorno2005@gmail.com", label: "Email"},
+    {
+        icon: Phone,
+        href: "tel:+573002329213",
+        label: "Phone"
+    },
+    {
+        icon: Mail,
+        href: "mailto:sebastianlopezosorno2005@gmail.com",
+        label: "Email"
+    },
 ];
 
 const additionalLinks = [
