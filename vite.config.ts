@@ -15,7 +15,7 @@ export default defineConfig(({mode}) => ({
     },
     plugins: [
         react(),
-        /*injectPreload({
+        injectPreload({
             files: [
                 {
                     match: /profile-[a-z0-9]+\.webp$/,
@@ -26,7 +26,7 @@ export default defineConfig(({mode}) => ({
                         type: 'image/webp'
                     }
                 },
-                {
+                /*{
                     match: /.*\.woff2$/,
                     attributes: {
                         rel: 'preload',
@@ -34,9 +34,9 @@ export default defineConfig(({mode}) => ({
                         type: 'font/woff2',
                         crossorigin: 'anonymous'
                     }
-                }
+                }*/
             ]
-        }),*/
+        }),
         mode === "development" && componentTagger(),
     ].filter(Boolean),
     resolve: {
