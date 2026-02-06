@@ -51,10 +51,26 @@ const additionalLinks = [
         href: "https://www.freecodecamp.org/sebastianlopezo",
         color: "bg-green-500/10 text-green-400"
     },
-    {name: "Docker Hub", href: "https://hub.docker.com/u/sebastian190030", color: "bg-blue-500/10 text-blue-400"},
-    {name: "WakaTime", href: "https://wakatime.com/@SebastianLopezO", color: "bg-purple-500/10 text-purple-400"},
-    {name: "Platzi", href: "https://platzi.com/p/SebastianLopezO/", color: "bg-green-600/10 text-green-400"},
-    {name: "Replit", href: "https://replit.com/@sebastianlopezo", color: "bg-gray-500/10 text-gray-400"},
+    {
+        name: "Docker Hub",
+        href: "https://hub.docker.com/u/sebastian190030",
+        color: "bg-blue-500/10 text-blue-400"
+    },
+    {
+        name: "WakaTime",
+        href: "https://wakatime.com/@SebastianLopezO",
+        color: "bg-purple-500/10 text-purple-400"
+    },
+    {
+        name: "Platzi",
+        href: "https://platzi.com/p/SebastianLopezO/",
+        color: "bg-green-600/10 text-green-400"
+    },
+    {
+        name: "Replit",
+        href: "https://replit.com/@sebastianlopezo",
+        color: "bg-gray-500/10 text-gray-400"
+    },
 ];
 
 const Footer = () => {
