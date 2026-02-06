@@ -15,7 +15,7 @@ export default defineConfig(({mode}) => ({
     },
     plugins: [
         react(),
-        injectPreload({
+        /*injectPreload({
             files: [
                 {
                     match: /profile-[a-z0-9]+\.webp$/,
@@ -36,7 +36,7 @@ export default defineConfig(({mode}) => ({
                     }
                 }
             ]
-        }),
+        }),*/
         mode === "development" && componentTagger(),
     ].filter(Boolean),
     resolve: {
