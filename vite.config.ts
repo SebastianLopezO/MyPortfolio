@@ -2,7 +2,8 @@ import {defineConfig} from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import {componentTagger} from "lovable-tagger";
-import injectPreload from 'vite-plugin-inject-preload';
+import injectPreload from "unplugin-inject-preload/vite";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => ({
@@ -14,11 +15,12 @@ export default defineConfig(({mode}) => ({
         },
     },
     plugins: [
+        tailwindcss(),
         react(),
         injectPreload({
             files: [
                 {
-                    match: /profile-[a-z0-9]+\.webp$/,
+                    test: /profile-[a-z0-9]+\.webp$/,
                     attributes: {
                         rel: 'preload',
                         as: 'image',
