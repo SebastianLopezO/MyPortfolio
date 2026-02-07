@@ -5,6 +5,17 @@ import {componentTagger} from "lovable-tagger";
 import injectPreload from "unplugin-inject-preload/vite";
 import tailwindcss from "@tailwindcss/vite";
 
+interface PreloadFile {
+    match: RegExp;
+    attributes: {
+        rel: string;
+        as: string;
+        fetchpriority?: string;
+        type?: string;
+        crossorigin?: string;
+    };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({mode}) => ({
     server: {
@@ -20,14 +31,14 @@ export default defineConfig(({mode}) => ({
         injectPreload({
             files: [
                 {
-                    test: /profile-[a-z0-9]+\.webp$/,
+                    match: /profile-[a-z0-9]+\.webp$/,
                     attributes: {
                         rel: 'preload',
                         as: 'image',
                         fetchpriority: 'high',
                         type: 'image/webp'
                     }
-                },
+                } as PreloadFile,
                 /*{
                     match: /.*\.woff2$/,
                     attributes: {
